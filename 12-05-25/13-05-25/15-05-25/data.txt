@@ -1,0 +1,752 @@
+function anagram(str1, str2) {
+  if (str1.length !== str2.length) {
+    return "Not Anagram";
+  }
+
+  const sorted1 = str1.split('').sort().join('');
+  const sorted2 = str2.split('').sort().join('');
+
+  if (sorted1 === sorted2) {
+    return "Anagram";
+  } else {
+    return "Not Anagram";
+  }
+}
+
+
+
+function findMissingNumber(arr) {
+  const max = Math.max(...arr);
+  const missingNumbers = [];
+
+  for (let i = 1; i <= max; i++) {
+    if (!arr.includes(i)) {
+      missingNumbers.push(i);
+    }
+  }
+
+  return missingNumbers;
+}
+
+const arr = [1, 2, 3, 5];
+console.log(findMissingNumber(arr));  // Output: [4]
+
+
+
+
+function inter(arr1,arr2) {
+var newarr = [...arr1,...arr2].sort();
+var arrdata = []
+
+for (let i = 0; i < newarr.length; i++) {
+    const element = newarr[i];
+    if (arr1.includes(element) && arr2.includes(element) && ! arrdata.includes(element)) {
+        arrdata.push(element)
+        
+    }
+    
+}
+return arrdata;
+    
+}
+a = [9,2,4,4,5,6]
+b = [3,4,7,9,1]
+
+console.log(inter(a,b));
+
+
+
+
+// Function to sort an array in ascending order
+function sortArrayAscending(arr) {
+    let temp;
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[i] > arr[j]) {
+                // Swap
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+    return arr;
+}
+ 
+// Predefined array
+let arr = [25, 10, 45, 20, 5];
+ 
+// Call the function
+let sortedArr = sortArrayAscending(arr);
+ 
+// Output
+console.log("Elements of array sorted in ascending order:");
+console.log(sortedArr);
+ 
+ 
+ 
+ 
+// Function to sort an array in descending order
+// function sortArrayDescending(arr) {
+//     let temp;
+//     for (let i = 0; i < arr.length; i++) {
+//         for (let j = i + 1; j < arr.length; j++) {
+//             if (arr[i] < arr[j]) {
+//                 // Swap
+//                 temp = arr[i];
+//                 arr[i] = arr[j];
+//                 arr[j] = temp;
+//             }
+//         }
+//     }
+//     return arr;
+// }
+ 
+// // Predefined array
+// let arr = [25, 10, 45, 20, 5];
+ 
+// // Call the function
+// let sortedArr = sortArrayDescending(arr);
+ 
+// // Output
+// console.log("Elements of array sorted in descending order:");
+// console.log(sortedArr);
+// function secondLargest(arr) {
+//     let max = -Infinity, second = -Infinity;
+//     for (let num of arr) {
+//         if (num > max) {
+//             second = max;
+//             max = num;
+//         } else if (num > second && num !== max) {
+//             second = num;
+//         }
+//     }
+//     return second;
+// }
+ 
+ 
+ 
+ 
+function secondLargest(arr) {
+    if (arr.length < 2) return null; // Not enough elements
+ 
+    let max = arr[0];
+    let second = arr[1];
+ 
+    // Ensure max is greater than second initially
+    if (second > max) {
+        [max, second] = [second, max]; // swap
+    }
+ 
+    for (let i = 2; i < arr.length; i++) {
+        let num = arr[i];
+ 
+        if (num > max) {
+            second = max;
+            max = num;
+        } else if (num > second && num !== max) {
+            second = num;
+        }
+    }
+ 
+    return max === second ? null : second; // In case all elements are same
+}
+ 
+ 
+ 
+ 
+function getHighest(arr) {
+    if (arr.length === 0) return null;
+ 
+    let max = arr[0];
+ 
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+ 
+    return max;
+}
+ 
+ 
+Absolutely! Here's a well-structured list of 100+ important DSA (Data Structures & Algorithms) problems — ideal for interview preparation — categorized by topic.
+🧮 1. Arrays
+Kadane's Algorithm (Maximum Subarray Sum)
+Sort 0s, 1s, and 2s (Dutch National Flag problem)
+Find majority element (Moore’s Voting Algorithm)
+Search in a rotated sorted array
+Sliding window maximum
+Find missing number
+Merge overlapping intervals
+Longest consecutive sequence
+Maximum product subarray
+Rotate array (cyclically)
+🔠 2. Strings
+Check if two strings are anagrams
+Longest substring without repeating characters
+Longest Palindromic Substring
+String compression (e.g., "aaabb" → "a3b2")
+Roman to Integer & vice versa
+Count and Say pattern
+Subsequence matching
+Word break problem
+KMP Algorithm (pattern search)
+Rabin-Karp Algorithm
+🔗 3. Linked List
+Reverse a linked list (iterative & recursive)
+Detect cycle in a linked list (Floyd’s cycle detection)
+Merge two sorted linked lists
+Add two numbers represented by linked lists
+Remove nth node from end
+Find the middle of a linked list
+Palindrome linked list
+Flatten a multilevel doubly linked list
+Clone a linked list with random pointers
+Sort a linked list
+🧱 4. Stacks & Queues
+Implement a stack using two queues
+Implement a queue using two stacks
+Valid parentheses check
+Min stack (return minimum in O(1) time)
+Next greater element
+Evaluate Reverse Polish Notation
+Sliding window maximum using deque
+LRU Cache using doubly linked list + hashmap
+Daily Temperatures (monotonic stack)
+🧮 5. Hashing
+Two sum problem
+Subarray with 0 sum
+Count distinct elements in every window
+Group anagrams
+Longest subarray with given sum K
+First non-repeating character
+Top K frequent elements
+Isomorphic strings
+🔁 6. Recursion & Backtracking
+N-Queens Problem
+Sudoku Solver
+Rat in a Maze
+Word Search
+Generate all subsets
+Permutations of a string/array
+Combination Sum
+Palindrome partitioning
+Solve a maze with backtracking
+Generate balanced parentheses
+📚 7. Sorting & Searching
+Binary Search (Recursive & Iterative)
+Lower bound / Upper bound
+Merge Sort
+Quick Sort
+Count Inversions
+Search in infinite sorted array
+Median of two sorted arrays
+Find peak element
+Interpolation Search
+Ternary Search
+🌲 8. Trees & Binary Trees
+Inorder / Preorder / Postorder traversal
+Level order traversal
+Height of a tree
+Check if tree is balanced
+Diameter of a binary tree
+Lowest common ancestor (LCA)
+Mirror a binary tree
+Serialize and Deserialize binary tree
+Path sum in binary tree
+Invert a binary tree
+🌳 9. Binary Search Trees (BST)
+Search/Insert/Delete in BST
+Validate BST
+Convert BST to a sorted DLL
+Kth smallest/largest in BST
+BST to balanced BST
+Floor and Ceil in BST
+Merge two BSTs
+📈 10. Graphs
+DFS & BFS traversal
+Detect cycle in graph (undirected & directed)
+Topological Sort
+Dijkstra’s Algorithm (Shortest Path)
+Bellman-Ford Algorithm
+Floyd-Warshall Algorithm
+Kruskal’s & Prim’s MST
+Graph coloring problem
+Number of islands (BFS/DFS)
+Clone graph
+💡 11. Dynamic Programming (DP)
+Fibonacci (memoization/tabulation)
+0/1 Knapsack
+Longest Common Subsequence (LCS)
+Longest Increasing Subsequence (LIS)
+Edit Distance
+Matrix Chain Multiplication
+Coin Change (min coins / total ways)
+Partition Equal Subset Sum
+Wildcard Matching
+Word Break Problem
+🔠 12. Tries & Heaps
+Implement Trie (Insert, Search, Prefix)
+Autocomplete System using Trie
+Min Heap / Max Heap implementation
+Merge K Sorted Arrays
+Find Kth largest/smallest element
+Median in data stream
+Top K frequent words/numbers
+📌 13. Miscellaneous / Advanced
+LRU Cache Design
+Design a tiny URL system
+LFU Cache
+Implement a simple calculator (string parsing)
+Snake and Ladder (graph-based shortest path)
+Stock Buy & Sell problems (multiple variations)
+Gas Station (circular route problem)
+Jump Game
+Scheduling Tasks with cooldown
+Design Data Structures (custom HashMap, Stack, etc.)
+📝 Want the Code?
+If you'd like code examples in Java, Python, or C++, or a downloadable PDF/Doc with questions and solutions, I can help generate that too. Let me know your preferred language or format!
+Would you like a Notion/Google Doc export of all these as a checklist?
+ 
+Here are **100 important JavaScript problems** covering **basic to advanced** topics, including **arrays, strings, objects, recursion, data structures, algorithms, and real-world applications**.
+ 
+---
+ 
+## **Basic JavaScript Problems**
+1. Print "Hello, World!"
+2. Swap two variables without a third variable.
+3. Check if a number is even or odd.
+4. Find the largest of three numbers.
+5. Convert Celsius to Fahrenheit.
+6. Check if a number is prime.
+7. Find the factorial of a number.
+8. Reverse a given string.
+9. Count vowels in a string.
+10. Check if a string is a palindrome.
+ 
+---
+ 
+## **Arrays and Strings**
+11. Find the largest number in an array.
+12. Find the smallest number in an array.
+13. Find the second largest number in an array.
+14. Remove duplicates from an array.
+15. Reverse an array.
+16. Find the sum of all elements in an array.
+17. Find the frequency of elements in an array.
+18. Merge two sorted arrays.
+19. Find the intersection of two arrays.
+20. Rotate an array by `k` positions.
+ 
+---
+ 
+## **Object Manipulation**
+21. Find the length of an object.
+22. Merge two objects.
+23. Check if a key exists in an object.
+24. Convert an object to an array.
+25. Convert an array to an object.
+26. Find duplicate values in an object.
+27. Get all keys of an object.
+28. Get all values of an object.
+29. Sort an array of objects by a key.
+30. Deep clone an object.
+ 
+---
+ 
+## **Number & Math Problems**
+31. Find the sum of digits of a number.
+32. Reverse a number.
+33. Check if a number is an Armstrong number.
+34. Generate a random number between a given range.
+35. Convert a number to binary.
+36. Convert binary to a decimal number.
+37. Find the greatest common divisor (GCD).
+38. Find the least common multiple (LCM).
+39. Find the power of a number without using `Math.pow()`.
+40. Check if a number is a perfect square.
+ 
+---
+ 
+## **Recursion Problems**
+41. Find the nth Fibonacci number.
+42. Find the sum of numbers in an array using recursion.
+43. Find the factorial using recursion.
+44. Reverse a string using recursion.
+45. Find the power of a number using recursion.
+46. Find the greatest common divisor using recursion.
+47. Implement binary search using recursion.
+48. Find all subsets of a set using recursion.
+49. Flatten a nested array using recursion.
+50. Count the number of ways to climb stairs (Fibonacci variation).
+ 
+---
+ 
+## **Sorting & Searching Algorithms**
+51. Implement Bubble Sort.
+52. Implement Selection Sort.
+53. Implement Insertion Sort.
+54. Implement Merge Sort.
+55. Implement Quick Sort.
+56. Implement Binary Search.
+57. Implement Linear Search.
+58. Implement Counting Sort.
+59. Find the first occurrence of an element in a sorted array.
+60. Find the missing number in a sorted array.
+ 
+---
+ 
+## **Data Structures: Linked List, Stack, Queue**
+61. Implement a singly linked list.
+62. Implement a doubly linked list.
+63. Reverse a linked list.
+64. Detect a cycle in a linked list.
+65. Find the middle element of a linked list.
+66. Implement a stack using an array.
+67. Implement a stack using a linked list.
+68. Implement a queue using an array.
+69. Implement a queue using a linked list.
+70. Implement a priority queue.
+ 
+---
+ 
+## **Set, Map & Hash Table**
+71. Implement a hash table.
+72. Find the first non-repeating character in a string.
+73. Check if two strings are anagrams.
+74. Find the longest substring without repeating characters.
+75. Find the intersection of two sets.
+76. Find the union of two sets.
+77. Find the difference between two sets.
+78. Find duplicate characters in a string.
+79. Find duplicate numbers in an array.
+80. Count word frequency in a string.
+ 
+---
+ 
+## **Graph & Tree Problems**
+81. Implement a binary search tree (BST).
+82. Find the height of a binary tree.
+83. Find the lowest common ancestor in a BST.
+84. Implement depth-first search (DFS).
+85. Implement breadth-first search (BFS).
+86. Check if a tree is balanced.
+87. Find the shortest path in a graph (Dijkstra’s algorithm).
+88. Detect a cycle in a graph.
+89. Find all paths from source to destination in a graph.
+90. Implement Trie (Prefix Tree) for word search.
+ 
+---
+ 
+## **Real-World JavaScript Problems**
+91. Implement a debounce function.
+92. Implement a throttle function.
+93. Implement a deep copy function.
+94. Implement a promise-based delay function.
+95. Implement a simple event emitter.
+96. Implement a rate limiter.
+97. Parse a CSV file into JSON.
+98. Implement a basic web scraper using `fetch()`.
+99. Implement infinite scrolling in JavaScript.
+100. Implement a basic API fetch using `async/await`.
+ 
+---
+ 
+var numbers = [2, 3, 2, 5, 3, 6, 2, 5];
+var frequency = {}; // Empty object to store counts
+ 
+for (var i = 0; i < numbers.length; i++) {
+  var current = numbers[i];
+ 
+  if (frequency[current] === undefined) {
+    frequency[current] = 1; // First time we see this number
+  } else {
+    frequency[current] = frequency[current] + 1; // Already exists, add 1
+  }
+}
+ 
+// Print frequency
+for (var key in frequency) {
+  console.log(key + " occurs " + frequency[key] + " times");
+}
+ 
+ 
+ 
+function isPalindrome(num) {
+    const str = num.toString();
+    const reversed = str.split('').reverse().join('');
+    return str === reversed;
+  }
+ 
+  console.log(isPalindrome(121));   // true
+  console.log(isPalindrome(123));   // false
+ 
+ 
+ 
+ 
+ 
+  function areAnagrams(str1, str2) {
+    // Convert both strings to lowercase
+    str1 = str1.toLowerCase();
+    str2 = str2.toLowerCase();
+ 
+    // Early exit if lengths don't match
+    if (str1.length !== str2.length) return false;
+ 
+   
+    // Create frequency counter for str1
+    const count = {};
+ 
+    for (let i = 0; i < str1.length; i++) {
+        const char = str1[i];
+        count[char] = (count[char] || 0) + 1;
+    }
+ 
+    // Decrease frequency based on str2
+    for (let i = 0; i < str2.length; i++) {
+        const char = str2[i];
+        if (!count[char]) {
+            return false; // char not found or used up
+        }
+        count[char]--;
+    }
+ 
+    return true; // all counts are zero
+}
+ 
+// Example usage:
+console.log(areAnagrams("listen", "silent"));     // true
+console.log(areAnagrams("triangle", "integral")); // true
+console.log(areAnagrams("hello", "world"));       // false
+ 
+ 
+Sure! Here are the answers for both problems — written in a simple, college-level style using basic loops and logic:
+✅ 78. Find duplicate characters in a string
+🧑‍💻 Code (normal way using loops):
+var str = "programming";
+var duplicates = [];
+for (var i = 0; i < str.length; i++) {
+  var count = 1;
+  var char = str[i];
+  // Skip spaces and already checked characters
+  if (duplicates.includes(char) || char === ' ') {
+    continue;
+  }
+  for (var j = i + 1; j < str.length; j++) {
+    if (char === str[j]) {
+      count++;
+    }
+  }
+  if (count > 1) {
+    duplicates.push(char);
+  }
+}
+console.log("Duplicate characters:", duplicates);
+📦 Output:
+Duplicate characters: [ 'r', 'g', 'm' ]
+✅ 79. Find duplicate numbers in an array
+🧑‍💻 Code (basic nested loop approach):
+var numbers = [1, 2, 3, 2, 4, 5, 1, 6];
+var duplicates = [];
+for (var i = 0; i < numbers.length; i++) {
+  var count = 1;
+  if (duplicates.includes(numbers[i])) {
+    continue; // Already counted
+  }
+  for (var j = i + 1; j < numbers.length; j++) {
+    if (numbers[i] === numbers[j]) {
+      count++;
+    }
+  }
+  if (count > 1) {
+    duplicates.push(numbers[i]);
+  }
+}
+console.log("Duplicate numbers:", duplicates);
+📦 Output:
+Duplicate numbers: [ 1, 2 ]
+Let me know if you'd like these examples using Set, Map, or in another language like C or Python.
+ 
+Great! You're writing a basic smallest() function well.
+Here’s a list of 50+ basic JavaScript practice problems just like your smallest() function – ideal for college-level and beginner practice:
+✅ Basic JavaScript Problems (Beginner – College Level)
+🔢 Array & Number Operations
+Find the largest number in an array
+Find the smallest number in an array ✅
+Find the second largest number
+Find the second smallest number
+Find the sum of all elements in an array
+Calculate the average of array elements
+Count even and odd numbers in an array
+Reverse an array manually
+Remove duplicates from an array
+Find missing numbers from a sequence
+🔁 Loops & Conditions
+Check if a number is even or odd
+Find factorial of a number
+Print Fibonacci series up to n terms
+Check if a number is prime
+Find all prime numbers between 1 and 100
+Check if a number is a palindrome
+Find the GCD (HCF) of two numbers
+Find the LCM of two numbers
+Count number of digits in a number
+Find the sum of digits of a number
+📜 String Problems
+Reverse a string
+Count vowels and consonants
+Check if a string is a palindrome
+Remove spaces from a string
+Convert string to uppercase and lowercase
+Count character frequency in a string
+Capitalize first letter of each word
+Check if two strings are anagrams
+Find longest word in a sentence
+Replace all vowels with a specific character
+🧮 Math / Logic Based
+Generate a random number between 1 and 100
+Check if a year is a leap year
+Convert Celsius to Fahrenheit
+Convert decimal to binary
+Convert binary to decimal
+Sum of natural numbers up to n
+Check Armstrong number
+Count how many times a number appears in an array
+Multiply all elements of an array
+Swap two variables without a third variable
+🧠 Logical / Misc
+Merge two sorted arrays
+Sort an array manually (Bubble Sort)
+Remove a specific element from an array
+Find common elements between two arrays
+Find union of two arrays
+Find intersection of two arrays
+Check if an element exists in an array (like .includes)
+Flatten a nested array (1 level)
+Get all unique values from an array
+Convert an object to an array of key-value pairs
+Check if a key exists in an object
+Loop through an object and print keys/values
+Use a Set to remove duplicates
+Use a Map to store key-value pairs
+Find frequency of each number in an array
+Would you like example code for any of these? I can start explaining them one by one based on your interest.
+ 
+
+That's great! Here's a refined and professional version of what you wrote, which you can use in your portfolio, resume, or for documentation purposes:
+ 
+---
+ 
+### Experience at PolicyBoss.com
+ 
+**Role**: Full Stack Developer
+**Organization**: [PolicyBoss.com](https://www.policyboss.com/) – Landmark Insurance Brokers Pvt. Ltd.
+**Technologies**: **Backend** – Node.js (Express.js), MongoDB | **Frontend** – Angular, React | **Integration** – REST APIs with third-party insurance providers
+ 
+---
+ 
+### Responsibilities & Contributions:
+ 
+* **Full Stack Development**:
+ 
+  * Built and maintained backend services using **Node.js (Express)** and **MongoDB** for handling insurance-related operations.
+  * Developed responsive and modular frontend applications using both **Angular** and **React**, depending on the module requirements.
+ 
+* **Third-Party API Integrations**:
+ 
+  * Integrated multiple third-party insurer APIs (e.g., premium calculator, KYC, quote comparison, proposal generation, and payment processing).
+  * Ensured smooth data flow and accurate premium calculations across different insurance providers.
+ 
+* **UAT and Production Deployment**:
+ 
+  * Followed a structured deployment process: initially developed features in UAT (User Acceptance Testing) environment, performed internal testing, and after approvals, deployed to the production environment.
+  * Conducted thorough testing for quote flows, proposal submission, and payment redirection to ensure consistency across insurers.
+ 
+* **Core Modules Developed**:
+ 
+  * **Quote Engine**: Displayed multiple insurers' quotes based on user inputs.
+  * **PG/KYC Integration**: Managed secure KYC data collection and integrated with payment gateways (PG).
+  * **Premium Initiation & Proposal APIs**: Built logic to trigger proposal APIs post-premium confirmation.
+  * **PDF Generation & Documentation**: Created proposal PDFs and other customer documents as per insurer guidelines.
+ 
+* **Collaboration & Documentation**:
+ 
+  * Worked closely with business teams to understand insurer-specific requirements.
+  * Drafted API flow documents, integration guides, and internal usage manuals to support the dev and QA teams.
+ 
+---
+ 
+Let me know if you'd like this in resume format or if you want help creating a portfolio or LinkedIn version of it. 
+ 
+Certainly! Here's an in-depth explanation of your role at PolicyBoss.com designed to help you present it confidently in an interview — whether it's for another job, internal promotion, or client discussion. It’s structured around key interview themes: what you did, how you did it, tools used, challenges, and outcomes.
+🧠 Context: What is PolicyBoss.com?
+PolicyBoss.com is one of India’s leading InsurTech platforms that connects customers to multiple insurance providers. It simplifies insurance buying by comparing quotes, generating proposals, processing KYC, and integrating with payment gateways.
+As a Full Stack Developer, I worked end-to-end on developing modules that power the core insurance comparison and purchase journey — from customer input to policy issuance.
+💼 Role: Full Stack Developer
+✅ Tech Stack:
+Frontend: Angular, React
+Backend: Node.js (Express)
+Database: MongoDB
+Other: API integrations, PDF generation, Postman, Git, Swagger
+🧩 Key Responsibilities & Project Flow
+1. Understanding Insurance APIs and Workflow
+We work with APIs from multiple insurance providers. Each insurer has its own APIs for:
+Quote Calculation
+KYC Submission
+Proposal Generation
+Premium Initiation
+PDF Document Generation
+Payment Processing
+I study each provider's documentation (usually provided as Swagger/Postman collections or PDFs), then plan how to map it to our system.
+2. Building API Integration Layer (Express.js)
+Created middleware in Express.js to communicate with third-party APIs.
+Handled:
+Dynamic URL generation with request tokens, IDs
+Authentication logic (token-based or header-based)
+Error handling for API failures
+Response standardization — converted all API responses into a common format for our frontend.
+📌 Example: For premium quote, we collect input from the user, call all insurers in parallel, and display the results side-by-side.
+3. Frontend UI Implementation (React/Angular)
+Developed forms to capture user data like personal details, nominee, travel plan, sum insured, etc.
+Used Angular Reactive Forms and React Hooks to handle:
+Real-time validation
+Conditional rendering (e.g., show “Any Other PED” dropdown based on disease selection)
+Input sanitization and transformation
+🧠 Example: If user.age >= 70, we restrict the sum insured options.
+4. Proposal & Payment Flow
+Created end-to-end flow:
+User selects quote → proposal details → KYC → payment gateway
+Backend:
+Fetch quote ID → generate proposal → initiate payment
+Handled callback from the PG API and updated payment status
+✅ Ensured that once payment is done, the system:
+Generates insurer-specific PDF proposal
+Stores it in MongoDB with status logs
+Sends email/SMS confirmation
+5. UAT to Production Deployment
+Deployed each module first in UAT
+Coordinated with QA testers and insurance partner teams
+Fixed any discrepancies between our request/response and what insurers expected
+Once UAT passed → deployed to production
+🛠 Tools Used:
+Postman (for API testing)
+MongoDB Compass
+Git + Bitbucket
+Jira (for task tracking)
+📊 Outcomes & Impact
+Helped successfully launch quote + proposal + payment journey for 10+ insurers
+Reduced proposal rejection rate by handling API-specific data formatting carefully
+Built reusable API wrapper functions to reduce new insurer onboarding time
+Ensured performance optimization by batching parallel API calls using Promise.all
+🤔 Common Interview Questions You Can Expect
+1. How do you manage API failures or timeout from an insurer?
+We use try/catch with timeout control. If an insurer API fails, we show other quotes and retry the failed one in the background if required.
+2. How do you ensure security, especially for KYC and payment?
+We encrypt PII data before saving it in MongoDB. Payments are handled via HTTPS and tokenized sessions with the PG provider.
+3. How do you switch between Angular and React in the same org?
+Different products use different stacks. I follow best practices for both – Reactive Forms in Angular and functional components/hooks in React.
+🗂 Summary Statement You Can Say in Interviews
+“At PolicyBoss.com, I’m responsible for building full-stack solutions that connect our users to real-time insurance quotes from multiple providers. I design and implement everything from frontend forms to backend API orchestration using React/Angular, Node.js, and MongoDB. My work includes integrating insurer APIs, handling proposal submissions, generating PDF documents, and managing the payment workflow. I also collaborate with business teams to translate insurer-specific logic into working modules, ensure the solution passes UAT, and then push it to production.”
+Would you like me to help you prepare this in resume bullet format, or simulate a mock interview with follow-up questions based on this experience? 
+ 
