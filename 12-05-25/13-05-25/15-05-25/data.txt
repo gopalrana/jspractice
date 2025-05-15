@@ -1,3 +1,557 @@
+function small_word(arr) {
+
+   var word = arr.split(' ');
+ 
+   var smallest_no = word[0];
+
+   for (let i = 0; i < word.length; i++) {
+
+        if (word[[i].length < smallest_no.length]) {
+
+            var small_word = word[i];
+
+        }
+
+   }
+ 
+   return smallest_no;
+
+}
+ 
+  // Example usage:
+
+  const new_sentence = "I love programming in JavaScript";
+
+  console.log(small_word(new_sentence));  // Output: programming
+ 
+function Match(arr) {
+ 
+    var count = {}
+ 
+    for (let i = 0; i < arr.length; i++) {
+
+        const element = arr[i];
+ 
+        if (count[element] === undefined) {
+
+            count[element] = 1
+ 
+        } else {
+
+            count[element] = count[element] + 1
+
+        }
+
+    }
+ 
+   console.log("count is ",count);   
+
+    let values = Object.values(obj);
+
+    console.log(values); 
+
+    let unique_data = [...new Set(values)]
+
+    console.log("unique_data",unique_data);
+ 
+}
+ 
+Match([1,3,3,1,1,5])
+ 
+ 
+function Inter(arr1, arr2) {
+
+    // Sort both arrays (optional, but useful if you want sorted result)
+
+    let arr1_Sorted = arr1.sort();
+
+    let arr2_Sorted = arr2.sort();
+
+    let result = [];
+
+    for (let i = 0; i < arr1_Sorted.length; i++) {
+
+      let element_i = arr1_Sorted[i];
+
+      for (let j = 0; j < arr2_Sorted.length; j++) {
+
+        let element_j = arr2_Sorted[j];
+
+        if (element_i === element_j) {
+
+          if (!result.includes(element_i)) {
+
+            result.push(element_i);
+
+          }
+
+        }
+
+      }
+
+    }
+
+    return result;
+
+  }
+ 
+console.log(Inter([1, 2, 3, 4], [3, 4, 5, 6]));
+ 
+ 
+ 
+ 
+ 
+ 
+function Same(arr1, arr2) {
+
+  // Sort both arrays
+
+  let arr1_Sorted = arr1.slice().sort();
+
+  let arr2_Sorted = arr2.slice().sort();
+ 
+  // If lengths differ, they can't be the same
+
+  if (arr1_Sorted.length !== arr2_Sorted.length) {
+
+    return false;
+
+  }
+ 
+  // Compare elements one by one
+
+  for (let i = 0; i < arr1_Sorted.length; i++) {
+
+    if (arr1_Sorted[i] !== arr2_Sorted[i]) {
+
+      return false;
+
+    }
+
+  }
+ 
+  // All elements matched
+
+  return true;
+
+}
+ 
+ 
+console.log(Same([1, 2, 4], [4, 1, 2]));  // true
+
+console.log(Same([1, 2, 4], [3, 4, 5]));  // false
+ 
+ 
+function Same(arr1, arr2) {
+
+  var arr1_Sorted = arr1.sort();
+
+  var arr2_Sorted = arr2.sort();
+ 
+  if (arr1_Sorted.length !== arr2_Sorted.length) {
+
+    return false;
+
+  } else {
+
+    console.log("working fine");
+
+  }
+
+}
+ 
+ 
+console.log(Same([1, 2, 4], [3, 4, 5, 6]));
+ 
+ 
+ 
+  function An(arr1, arr2) {
+
+    // Sort both arrays
+
+    let arr1_Sorted = arr1.slice().sort();
+
+    let arr2_Sorted = arr2.slice().sort();
+
+    // If lengths differ, they can't be the same
+
+    if (arr1_Sorted.length !== arr2_Sorted.length) {
+
+      return false;
+
+    }
+
+    // Compare elements one by one
+
+    for (let i = 0; i < arr1_Sorted.length; i++) {
+
+      if (arr1_Sorted[i] !== arr2_Sorted[i]) {
+
+        return false;
+
+      }
+
+    }
+
+    // All elements matched
+
+    return true;
+
+  }
+
+  console.log(An([1, 2, 4], [4, 1, 2]));  // true
+
+  console.log(An([1, 2, 4], [3, 4, 5]));  // false
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+function remove(arr1) { 
+
+  // Step 1: Convert the array to a Set (removes duplicates)
+
+  const uniqueSet = new Set(arr1);
+ 
+  // Step 2: Convert the Set back into an array
+
+  const uniqueArray = Array.from(uniqueSet);
+ 
+  return uniqueArray;
+
+}
+ 
+console.log(remove([1, 2, 1, 1, 1, 2])); // ✅ Correct call with ()
+ 
+ 
+ 
+function findMissingNumbers(arr) {
+
+  const maxNum = Math.max(...arr);
+
+  const missing = [];
+ 
+  for (let i = 1; i <= maxNum; i++) {
+
+    if (!arr.includes(i)) {
+
+      missing.push(i);
+
+    }
+
+  }
+ 
+  return missing;
+
+}
+ 
+console.log(findMissingNumbers([2, 13, 4, 4, 2, 1]));
+ 
+ 
+ 
+ 
+const array1 = [1, 2, 3, 4];
+
+const array2 = [3, 5, 7];
+ 
+const hasCommon = array2.some(el => array1.includes(el));
+ 
+console.log(hasCommon);  // true (because 3 is common)
+ 
+ 
+const arr = [1, 2, 3, 4];
+
+const value = 5;
+ 
+const foundValue = arr.find(element => element === value);
+ 
+if (foundValue !== undefined) {
+
+  console.log("Found:", foundValue);
+
+} else {
+
+  console.log("Not found");
+
+}
+ 
+ 
+ 
+function mergeSortedArrays(arr1, arr2) {
+
+  let merged = [];
+
+  let i = 0, j = 0;
+ 
+  // Main loop using for
+
+  for (let k = 0; k < arr1.length + arr2.length; k++) {
+
+    if (i < arr1.length && (j >= arr2.length || arr1[i] < arr2[j])) {
+
+      merged.push(arr1[i]);
+
+      i++;
+
+    } else if (j < arr2.length) {
+
+      merged.push(arr2[j]);
+
+      j++;
+
+    }
+
+  }
+ 
+  return merged;
+
+}
+ 
+// Example:
+
+const array1 = [1, 3, 5, 7];
+
+const array2 = [2, 4, 6, 8];
+ 
+const result = mergeSortedArrays(array1, array2);
+
+console.log("Merged Sorted Array:", result);
+ 
+ 
+ 
+function smallest(arr) {
+
+    var min = arr[0]
+
+    for (let i = 0; i < arr.length; i++) {
+
+        var element = arr[i];
+
+        if (element<min) {
+
+            min = element;
+
+        }
+
+    }
+
+    return min;
+
+}
+ 
+ 
+console.log(smallest([10,1,2,4,5,6]));
+ 
+ 
+ 
+function remove_array(arr, tar) {
+
+    var arr_data = [];
+
+    for (let i = 0; i < arr.length; i++) {
+
+      const element = arr[i];
+
+      if (element !== tar) {
+
+        arr_data.push(element); 
+
+      }
+
+    }
+
+    return arr_data;
+
+  }
+
+  console.log(remove_array([1, 2, 3, 2, 4, 2, 5], 2));  
+
+ 
+function smallest(arr) {
+
+    var min = arr[0]
+
+    for (let i = 0; i < arr.length; i++) {
+
+        const element = array[i];
+
+        if (element<min) {
+
+            min = element;
+
+        }
+
+    }
+
+    return min;
+
+}
+ 
+ 
+console.log(smallest[10,1,2,4,5,6]);
+ 
+ 
+ 
+ 
+function remove_array(arr, tar) {
+
+    var arr_data = [];
+
+    for (let i = 0; i < arr.length; i++) {
+
+      const element = arr[i];
+
+      if (element !== tar) {
+
+        arr_data.push(element); 
+
+      }
+
+    }
+
+    return arr_data;
+
+  }
+
+  console.log(remove_array([1, 2, 3, 2, 4, 2, 5], 2));  
+
+ 
+function smallest(arr) {
+
+    var min = arr[0]
+
+    for (let i = 0; i < arr.length; i++) {
+
+        const element = array[i];
+
+        if (element<min) {
+
+            min = element;
+
+        }
+
+    }
+
+    return min;
+
+}
+ 
+ 
+console.log(smallest[10,1,2,4,5,6]);
+ 
+ 
+ 
+function removeSpaces(str) {
+
+  return str.split(' ').join('');
+
+}
+ 
+console.log(removeSpaces("He llo Wor ld!")); // Output: "HelloWorld!"
+ 
+ 
+ 
+function isLeapYear(year) {
+
+  if (year % 400 === 0) {
+
+    return true; // divisible by 400 → leap year
+
+  } else if (year % 100 === 0) {
+
+    return false; // divisible by 100 but not 400 → not a leap year
+
+  } else if (year % 4 === 0) {
+
+    return true; // divisible by 4 → leap year
+
+  } else {
+
+    return false; // not divisible by 4 → not a leap year
+
+  }
+
+}
+ 
+// Example usage
+
+console.log(isLeapYear(2024)); // true
+
+console.log(isLeapYear(1900)); // false
+
+console.log(isLeapYear(2000)); // true
+ 
+ 
+ 
+ 
+function small_word(arr) {
+
+   var word = arr.split(' ');
+ 
+   var smallest_no = word[0];
+
+   for (let i = 0; i < word.length; i++) {
+
+        if (word[[i].length < smallest_no.length]) {
+
+            var small_word = word[i];
+
+        }
+
+   }
+ 
+   return smallest_no;
+
+}
+ 
+  // Example usage:
+
+  const new_sentence = "I love programming in JavaScript";
+
+  console.log(small_word(new_sentence));  // Output: programming
+
+ 
+function small_word(sentence) {
+
+   var words = sentence.split(' ');
+
+   var smallest_no = words[0];
+ 
+   for (let i = 1; i < words.length; i++) {
+
+        if (words[i].length < smallest_no.length) {
+
+            smallest_no = words[i];  // update smallest word
+
+        }
+
+   }
+ 
+   return smallest_no;
+
+}
+ 
+// Example usage:
+
+const new_sentence = "programming lov in665 JavaScript";
+
+console.log(small_word(new_sentence));  // Output: I
+
+ 
+
+
+
+
+
+
+
+
+
+
+
 function anagram(str1, str2) {
   if (str1.length !== str2.length) {
     return "Not Anagram";
