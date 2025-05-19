@@ -1,0 +1,2806 @@
+function arr_count(arr1) {
+    var count = {}
+    for (var i = 0; i < arr1.length; i++) {
+        var element = arr1[i]
+        if (count[element]) {
+            count[element] += 1;
+
+        }
+        else {
+            count[element] = 1;
+        }
+    }
+
+    return count;
+
+}
+console.log(arr_count([2, 4, 1, 1, 1, 2]));
+
+
+
+
+function anagram(str1, str2) {
+  str1 = str1.toLowerCase();
+  str2 = str2.toLowerCase();
+  if (str1.length !== str2.length) return false;
+  return str1.split('').sort().join('') === str2.split('').sort().join('');
+}
+// anagram("listen", "silent") => true
+// anagram("listen", "sient")  => false
+
+
+function anagram(str1, str2) {
+  // Step 1: Length check
+  if (str1.length !== str2.length) return false;
+
+  // Step 2: Sort both strings
+  const sorted1 = str1.split('').sort().join('');
+  const sorted2 = str2.split('').sort().join('');
+
+  // Step 3: Compare sorted strings
+  return sorted1 === sorted2;
+}
+
+console.log(anagram("listen", "silent"));  // true
+console.log(anagram("listen", "sient"));   // false
+
+
+
+function findMissing(arr) {
+  const max = Math.max(...arr);
+  const missing = [];
+
+  for (let i = 1; i <= max; i++) {
+    if (!arr.includes(i)) {
+      missing.push(i);
+    }
+  }
+
+  return missing;
+}
+
+
+function intersection(arr1, arr2) {
+  return arr1.map(element => arr2.includes(element));
+}
+
+// const arr1 = [1, 2, 3, 4];
+// const arr2 = [3, 4, 5, 6];
+
+console.log(intersection(arr1, arr2));  // Output: [3, 4]
+
+
+
+function intersection(arr1, arr2) {
+  const result = [];
+  
+  for (let i = 0; i < arr1.length; i++) {
+    const element = arr1[i];
+    
+    // Check if element is in arr2 and not already in result
+    for (let j = 0; j < arr2.length; j++) {
+      if (element === arr2[j]) {
+        if (!result.includes(element)) {
+          result.push(element);
+        }
+      }
+    }
+  }
+  
+  return result;
+}
+
+const arr1 = [1, 2, 3, 4, 3];
+const arr2 = [3, 4, 5, 6, 3];
+
+console.log(intersection(arr1, arr2));  // Output: [3, 4]
+
+
+
+function sortArray(arr) {
+  // Bubble Sort logic
+  for (let i = 0; i < arr.length - 1; i++) {
+    for (let j = 0; j < arr.length - 1 - i; j++) {
+      if (arr[j] > arr[j + 1]) {
+        // Swap
+        let temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+      }
+    }
+  }
+  return arr;
+}
+
+// Example usage
+const arr = [5, 2, 4, 1, 3];
+console.log(sortArray(arr));  // Output: [1, 2, 3, 4, 5]
+
+
+
+let str = "Remove all spaces from this string";
+let result = str.split(' ').join('');
+console.log(result); // Output: "Removeallspacesfromthisstring"
+
+
+
+function countVowelsAndConsonants(str) {
+  // Lowercase कर लेते हैं ताकि case का फर्क न पड़े
+  str = str.toLowerCase();
+
+  let vowels = "aeiou";
+  let vowelCount = 0;
+  let consonantCount = 0;
+
+  for (let char of str) {
+    if (/[a-z]/.test(char)) { // सिर्फ alphabets को count करें
+      if (vowels.includes(char)) {
+        vowelCount++;
+      } else {
+        consonantCount++;
+      }
+    }
+  }
+
+  return {
+    vowels: vowelCount,
+    consonants: consonantCount
+  };
+}
+
+// Example
+let input = "Hello World!";
+let result = countVowelsAndConsonants(input);
+console.log(result); // Output: { vowels: 3, consonants: 7 }
+
+
+
+function printFibonacci(n) {
+  let fib = [];
+
+  for (let i = 0; i < n; i++) {
+    if (i === 0) {
+      fib.push(0);
+    } else if (i === 1) {
+      fib.push(1);
+    } else {
+      fib.push(fib[i - 1] + fib[i - 2]);
+    }
+  }
+
+  // console.log(fib.join(', '));
+
+
+
+  return fib
+}
+
+// Example
+console.log( printFibonacci(10));
+
+
+
+function isPrime(num) {
+  if (num <= 1) return false; // 0 और 1 prime नहीं होते
+  if (num === 2) return true; // 2 एक मात्र even prime number है
+
+  // अगर कोई number 2 से लेकर √num तक divide हो गया, तो prime नहीं है
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) return false;
+  }
+
+  return true;
+}
+
+// Example
+let number = 17;
+console.log(`${number} is prime: ${isPrime(number)}`); // Output: 17 is prime: true
+
+
+function fib(num)
+{
+  var fib = []
+  for (var i= 0; i<num; i++) {
+    if(i === 0)
+    {
+      fib.push(0)
+    }else if(i ===1){
+      fib.push(1)
+    }else{
+    
+        fib.push(fib[i-1] + fib[i-2])
+      
+    }
+  }
+  return fib.join(' ')
+  
+}
+
+console.log(fib(10));
+
+
+
+function isPrime(num) {
+  if (num <= 1) return { number: num, isPrime: false };
+  if (num === 2) return { number: num, isPrime: true };
+
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) return { number: num, isPrime: false };
+  }
+
+  return { number: num, isPrime: true };
+}
+
+console.log(isPrime(10)); // Output: { number: 10, isPrime: false }
+console.log(isPrime(17)); // Output: { number: 17, isPrime: true }
+function findMissingNumber(arr) {
+  let n = arr.length + 1; // total numbers supposed to be
+
+  // Sum of first n natural numbers = n*(n+1)/2
+  let totalSum = (n * (n + 1)) / 2;
+
+  // Sum of given array elements
+  let arrSum = arr.reduce((acc, val) => acc + val, 0);
+
+  // Missing number = totalSum - arrSum
+  return totalSum - arrSum;
+}
+
+let arr = [1, 2, 3, 5, 6];
+console.log(findMissingNumber(arr));  // Output: 4
+
+
+function findMissingNumber(arr) {
+  let n = Math.max(...arr)
+
+  // Sum of first n natural numbers = n*(n+1)/2
+  let totalSum = (n * (n + 1)/2)
+  console.log("totalSum",totalSum)
+
+  // Sum of given array elements
+  let arrSum = arr.reduce((acc, val) => acc + val, 0);
+    console.log("arrSum",arrSum)
+
+
+  // Missing number = totalSum - arrSum
+  return totalSum - arrSum;
+}
+
+let arr = [1, 2, 3, 5, 6];
+console.log(findMissingNumber(arr));  // Output: 4
+
+
+
+function isPrime(num) {
+  if (num <= 1) return false;
+  if (num === 2) return true;
+
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) return false;
+  }
+
+  return true;
+}
+
+function primesBetween1And100() {
+  let primes = [];
+
+  for (let i = 2; i <= 100; i++) {
+    if (isPrime(i)) {
+      primes.push(i);
+    }
+  }
+
+  return primes;
+}
+
+console.log(primesBetween1And100());
+
+
+
+function isArmstrong(num) {
+  let strNum = num.toString();
+  let n = strNum.length;
+  let sum = 0;
+
+  for (let char of strNum) {
+    sum += Math.pow(parseInt(char), n);
+  }
+
+  return sum === num;
+}
+
+// Test examples
+console.log(isArmstrong(153));  // true
+console.log(isArmstrong(370));  // true
+console.log(isArmstrong(123));  // false
+
+
+function indexOfElement(arr, target) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === target) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+console.log(indexOfElement([1, 2, 3, 4], 3));  // Output: 2
+console.log(indexOfElement([10, 20, 30], 50)); // Output: -1
+
+
+
+function sortArrayAscending(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[i] > arr[j]) {
+                [arr[i], arr[j]] = [arr[j], arr[i]]; // simple swap
+            }
+        }
+    }
+    return arr;
+}
+
+const sortedArr = sortArrayAscending([4, 1, 3, 2]);
+console.log(sortedArr); // [1, 2, 3, 4]
+
+
+
+function anagram(str1, str2) {
+    if (str1.length !== str2.length) {
+      return "Not Anagram";
+    }
+  
+    const sorted1 = str1.split('').sort().join('');
+    const sorted2 = str2.split('').sort().join('');
+  
+    if (sorted1 === sorted2) {
+      return "Anagram";
+    } else {
+      return "Not Anagram";
+    }
+  }
+  
+  
+  
+  function findMissingNumber(arr) {
+    const max = Math.max(...arr);
+    const missingNumbers = [];
+  
+    for (let i = 1; i <= max; i++) {
+      if (!arr.includes(i)) {
+        missingNumbers.push(i);
+      }
+    }
+  
+    return missingNumbers;
+  }
+  
+  const arr = [1, 2, 3, 5];
+  console.log(findMissingNumber(arr));  // Output: [4]
+  
+  
+  
+  
+  function inter(arr1,arr2) {
+  var newarr = [...arr1,...arr2].sort();
+  var arrdata = []
+  
+  for (let i = 0; i < newarr.length; i++) {
+      const element = newarr[i];
+      if (arr1.includes(element) && arr2.includes(element) && ! arrdata.includes(element)) {
+          arrdata.push(element)
+          
+      }
+      
+  }
+  return arrdata;
+      
+  }
+  a = [9,2,4,4,5,6]
+  b = [3,4,7,9,1]
+  
+  console.log(inter(a,b));
+  
+  
+  
+  
+  // Function to sort an array in ascending order
+  function sortArrayAscending(arr) {
+      let temp;
+      for (let i = 0; i < arr.length; i++) {
+          for (let j = i + 1; j < arr.length; j++) {
+              if (arr[i] > arr[j]) {
+                  // Swap
+                  temp = arr[i];
+                  arr[i] = arr[j];
+                  arr[j] = temp;
+              }
+          }
+      }
+      return arr;
+  }
+   
+  // Predefined array
+  let arr = [25, 10, 45, 20, 5];
+   
+  // Call the function
+  let sortedArr = sortArrayAscending(arr);
+   
+  // Output
+  console.log("Elements of array sorted in ascending order:");
+  console.log(sortedArr);
+   
+   
+   
+   
+  // Function to sort an array in descending order
+  // function sortArrayDescending(arr) {
+  //     let temp;
+  //     for (let i = 0; i < arr.length; i++) {
+  //         for (let j = i + 1; j < arr.length; j++) {
+  //             if (arr[i] < arr[j]) {
+  //                 // Swap
+  //                 temp = arr[i];
+  //                 arr[i] = arr[j];
+  //                 arr[j] = temp;
+  //             }
+  //         }
+  //     }
+  //     return arr;
+  // }
+   
+  // // Predefined array
+  // let arr = [25, 10, 45, 20, 5];
+   
+  // // Call the function
+  // let sortedArr = sortArrayDescending(arr);
+   
+  // // Output
+  // console.log("Elements of array sorted in descending order:");
+  // console.log(sortedArr);
+  // function secondLargest(arr) {
+  //     let max = -Infinity, second = -Infinity;
+  //     for (let num of arr) {
+  //         if (num > max) {
+  //             second = max;
+  //             max = num;
+  //         } else if (num > second && num !== max) {
+  //             second = num;
+  //         }
+  //     }
+  //     return second;
+  // }
+   
+   
+   
+   
+  function secondLargest(arr) {
+      if (arr.length < 2) return null; // Not enough elements
+   
+      let max = arr[0];
+      let second = arr[1];
+   
+      // Ensure max is greater than second initially
+      if (second > max) {
+          [max, second] = [second, max]; // swap
+      }
+   
+      for (let i = 2; i < arr.length; i++) {
+          let num = arr[i];
+   
+          if (num > max) {
+              second = max;
+              max = num;
+          } else if (num > second && num !== max) {
+              second = num;
+          }
+      }
+   
+      return max === second ? null : second; // In case all elements are same
+  }
+   
+   
+   
+   
+  function getHighest(arr) {
+      if (arr.length === 0) return null;
+   
+      let max = arr[0];
+   
+      for (let i = 1; i < arr.length; i++) {
+          if (arr[i] > max) {
+              max = arr[i];
+          }
+      }
+   
+      return max;
+  }
+
+
+  बिलकुल! मैं तुम्हें हर sorting/searching algorithm का simple और साफ़ implementation दूंगा।
+यहाँ JavaScript में सभी algorithms दिए गए हैं:
+
+---
+
+### 51. **Bubble Sort**
+
+```js
+function bubbleSort(arr) {
+  let n = arr.length;
+  for (let i = 0; i < n - 1; i++) {
+    for (let j = 0; j < n - 1 - i; j++) {
+      if (arr[j] > arr[j + 1]) {
+        // swap
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+      }
+    }
+  }
+  return arr;
+}
+```
+
+---
+
+### 52. **Selection Sort**
+
+```js
+function selectionSort(arr) {
+  let n = arr.length;
+  for (let i = 0; i < n - 1; i++) {
+    let minIndex = i;
+    for (let j = i + 1; j < n; j++) {
+      if (arr[j] < arr[minIndex]) {
+        minIndex = j;
+      }
+    }
+    [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+  }
+  return arr;
+}
+```
+
+---
+
+### 53. **Insertion Sort**
+
+```js
+function insertionSort(arr) {
+  let n = arr.length;
+  for (let i = 1; i < n; i++) {
+    let key = arr[i];
+    let j = i - 1;
+    while (j >= 0 && arr[j] > key) {
+      arr[j + 1] = arr[j];
+      j--;
+    }
+    arr[j + 1] = key;
+  }
+  return arr;
+}
+```
+
+---
+
+### 54. **Merge Sort**
+
+```js
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
+
+  const mid = Math.floor(arr.length / 2);
+  const left = mergeSort(arr.slice(0, mid));
+  const right = mergeSort(arr.slice(mid));
+
+  return merge(left, right);
+}
+
+function merge(left, right) {
+  let result = [], i = 0, j = 0;
+
+  while (i < left.length && j < right.length) {
+    if (left[i] < right[j]) {
+      result.push(left[i++]);
+    } else {
+      result.push(right[j++]);
+    }
+  }
+  return result.concat(left.slice(i)).concat(right.slice(j));
+}
+```
+
+---
+
+### 55. **Quick Sort**
+
+```js
+function quickSort(arr) {
+  if (arr.length <= 1) return arr;
+
+  const pivot = arr[arr.length - 1];
+  const left = [], right = [];
+
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] < pivot) left.push(arr[i]);
+    else right.push(arr[i]);
+  }
+
+  return [...quickSort(left), pivot, ...quickSort(right)];
+}
+```
+
+---
+
+### 56. **Binary Search** (array sorted होना चाहिए)
+
+```js
+function binarySearch(arr, target) {
+  let left = 0, right = arr.length - 1;
+
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+
+    if (arr[mid] === target) return mid;
+    else if (arr[mid] < target) left = mid + 1;
+    else right = mid - 1;
+  }
+
+  return -1; // not found
+}
+```
+
+---
+
+### 57. **Linear Search**
+
+```js
+function linearSearch(arr, target) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === target) return i;
+  }
+  return -1;
+}
+```
+
+---
+
+### 58. **Counting Sort** (Assuming all values are non-negative integers)
+
+```js
+function countingSort(arr) {
+  const max = Math.max(...arr);
+  const count = new Array(max + 1).fill(0);
+
+  for (let num of arr) {
+    count[num]++;
+  }
+
+  let sortedIndex = 0;
+  for (let i = 0; i <= max; i++) {
+    while (count[i] > 0) {
+      arr[sortedIndex++] = i;
+      count[i]--;
+    }
+  }
+  return arr;
+}
+```
+
+---
+
+### 59. **Find first occurrence of an element in a sorted array**
+
+```js
+function firstOccurrence(arr, target) {
+  let left = 0, right = arr.length - 1;
+  let result = -1;
+
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+    if (arr[mid] === target) {
+      result = mid;
+      right = mid - 1;  // keep searching left side
+    } else if (arr[mid] < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+
+  return result;
+}
+```
+
+---
+
+अगर इनमें से किसी पर डिटेल में समझना हो, time complexity जाननी हो या कोई optimization चाहिए तो बताओ!
+
+   
+   
+  Absolutely! Here's a well-structured list of 100+ important DSA (Data Structures & Algorithms) problems — ideal for interview preparation — categorized by topic.
+  🧮 1. Arrays
+  Kadane's Algorithm (Maximum Subarray Sum)
+  Sort 0s, 1s, and 2s (Dutch National Flag problem)
+  Find majority element (Moore’s Voting Algorithm)
+  Search in a rotated sorted array
+  Sliding window maximum
+  Find missing number
+  Merge overlapping intervals
+  Longest consecutive sequence
+  Maximum product subarray
+  Rotate array (cyclically)
+  🔠 2. Strings
+  Check if two strings are anagrams
+  Longest substring without repeating characters
+  Longest Palindromic Substring
+  String compression (e.g., "aaabb" → "a3b2")
+  Roman to Integer & vice versa
+  Count and Say pattern
+  Subsequence matching
+  Word break problem
+  KMP Algorithm (pattern search)
+  Rabin-Karp Algorithm
+  🔗 3. Linked List
+  Reverse a linked list (iterative & recursive)
+  Detect cycle in a linked list (Floyd’s cycle detection)
+  Merge two sorted linked lists
+  Add two numbers represented by linked lists
+  Remove nth node from end
+  Find the middle of a linked list
+  Palindrome linked list
+  Flatten a multilevel doubly linked list
+  Clone a linked list with random pointers
+  Sort a linked list
+  🧱 4. Stacks & Queues
+  Implement a stack using two queues
+  Implement a queue using two stacks
+  Valid parentheses check
+  Min stack (return minimum in O(1) time)
+  Next greater element
+  Evaluate Reverse Polish Notation
+  Sliding window maximum using deque
+  LRU Cache using doubly linked list + hashmap
+  Daily Temperatures (monotonic stack)
+  🧮 5. Hashing
+  Two sum problem
+  Subarray with 0 sum
+  Count distinct elements in every window
+  Group anagrams
+  Longest subarray with given sum K
+  First non-repeating character
+  Top K frequent elements
+  Isomorphic strings
+  🔁 6. Recursion & Backtracking
+  N-Queens Problem
+  Sudoku Solver
+  Rat in a Maze
+  Word Search
+  Generate all subsets
+  Permutations of a string/array
+  Combination Sum
+  Palindrome partitioning
+  Solve a maze with backtracking
+  Generate balanced parentheses
+  📚 7. Sorting & Searching
+  Binary Search (Recursive & Iterative)
+  Lower bound / Upper bound
+  Merge Sort
+  Quick Sort
+  Count Inversions
+  Search in infinite sorted array
+  Median of two sorted arrays
+  Find peak element
+  Interpolation Search
+  Ternary Search
+  🌲 8. Trees & Binary Trees
+  Inorder / Preorder / Postorder traversal
+  Level order traversal
+  Height of a tree
+  Check if tree is balanced
+  Diameter of a binary tree
+  Lowest common ancestor (LCA)
+  Mirror a binary tree
+  Serialize and Deserialize binary tree
+  Path sum in binary tree
+  Invert a binary tree
+  🌳 9. Binary Search Trees (BST)
+  Search/Insert/Delete in BST
+  Validate BST
+  Convert BST to a sorted DLL
+  Kth smallest/largest in BST
+  BST to balanced BST
+  Floor and Ceil in BST
+  Merge two BSTs
+  📈 10. Graphs
+  DFS & BFS traversal
+  Detect cycle in graph (undirected & directed)
+  Topological Sort
+  Dijkstra’s Algorithm (Shortest Path)
+  Bellman-Ford Algorithm
+  Floyd-Warshall Algorithm
+  Kruskal’s & Prim’s MST
+  Graph coloring problem
+  Number of islands (BFS/DFS)
+  Clone graph
+  💡 11. Dynamic Programming (DP)
+  Fibonacci (memoization/tabulation)
+  0/1 Knapsack
+  Longest Common Subsequence (LCS)
+  Longest Increasing Subsequence (LIS)
+  Edit Distance
+  Matrix Chain Multiplication
+  Coin Change (min coins / total ways)
+  Partition Equal Subset Sum
+  Wildcard Matching
+  Word Break Problem
+  🔠 12. Tries & Heaps
+  Implement Trie (Insert, Search, Prefix)
+  Autocomplete System using Trie
+  Min Heap / Max Heap implementation
+  Merge K Sorted Arrays
+  Find Kth largest/smallest element
+  Median in data stream
+  Top K frequent words/numbers
+  📌 13. Miscellaneous / Advanced
+  LRU Cache Design
+  Design a tiny URL system
+  LFU Cache
+  Implement a simple calculator (string parsing)
+  Snake and Ladder (graph-based shortest path)
+  Stock Buy & Sell problems (multiple variations)
+  Gas Station (circular route problem)
+  Jump Game
+  Scheduling Tasks with cooldown
+  Design Data Structures (custom HashMap, Stack, etc.)
+  📝 Want the Code?
+  If you'd like code examples in Java, Python, or C++, or a downloadable PDF/Doc with questions and solutions, I can help generate that too. Let me know your preferred language or format!
+  Would you like a Notion/Google Doc export of all these as a checklist?
+   
+  Here are **100 important JavaScript problems** covering **basic to advanced** topics, including **arrays, strings, objects, recursion, data structures, algorithms, and real-world applications**.
+   
+  ---
+   
+  ## **Basic JavaScript Problems**
+  1. Print "Hello, World!"
+  2. Swap two variables without a third variable.
+  3. Check if a number is even or odd.
+  4. Find the largest of three numbers.
+  5. Convert Celsius to Fahrenheit.
+  6. Check if a number is prime.
+  7. Find the factorial of a number.
+  8. Reverse a given string.
+  9. Count vowels in a string.
+  10. Check if a string is a palindrome.
+   
+  ---
+   
+  ## **Arrays and Strings**
+  11. Find the largest number in an array.
+  12. Find the smallest number in an array.
+  13. Find the second largest number in an array.
+  14. Remove duplicates from an array.
+  15. Reverse an array.
+  16. Find the sum of all elements in an array.
+  17. Find the frequency of elements in an array.
+  18. Merge two sorted arrays.
+  19. Find the intersection of two arrays.
+  20. Rotate an array by `k` positions.
+   
+  ---
+   
+  ## **Object Manipulation**
+  21. Find the length of an object.
+  22. Merge two objects.
+  23. Check if a key exists in an object.
+  24. Convert an object to an array.
+  25. Convert an array to an object.
+  26. Find duplicate values in an object.
+  27. Get all keys of an object.
+  28. Get all values of an object.
+  29. Sort an array of objects by a key.
+  30. Deep clone an object.
+   
+  ---
+   
+  ## **Number & Math Problems**
+  31. Find the sum of digits of a number.
+  32. Reverse a number.
+  33. Check if a number is an Armstrong number.
+  34. Generate a random number between a given range.
+  35. Convert a number to binary.
+  36. Convert binary to a decimal number.
+  37. Find the greatest common divisor (GCD).
+  38. Find the least common multiple (LCM).
+  39. Find the power of a number without using `Math.pow()`.
+  40. Check if a number is a perfect square.
+   
+  ---
+   
+  ## **Recursion Problems**
+  41. Find the nth Fibonacci number.
+  42. Find the sum of numbers in an array using recursion.
+  43. Find the factorial using recursion.
+  44. Reverse a string using recursion.
+  45. Find the power of a number using recursion.
+  46. Find the greatest common divisor using recursion.
+  47. Implement binary search using recursion.
+  48. Find all subsets of a set using recursion.
+  49. Flatten a nested array using recursion.
+  50. Count the number of ways to climb stairs (Fibonacci variation).
+   
+  ---
+   
+  ## **Sorting & Searching Algorithms**
+  51. Implement Bubble Sort.
+  52. Implement Selection Sort.
+  53. Implement Insertion Sort.
+  54. Implement Merge Sort.
+  55. Implement Quick Sort.
+  56. Implement Binary Search.
+  57. Implement Linear Search.
+  58. Implement Counting Sort.
+  59. Find the first occurrence of an element in a sorted array.
+  60. Find the missing number in a sorted array.
+   
+  ---
+   
+  ## **Data Structures: Linked List, Stack, Queue**
+  61. Implement a singly linked list.
+  62. Implement a doubly linked list.
+  63. Reverse a linked list.
+  64. Detect a cycle in a linked list.
+  65. Find the middle element of a linked list.
+  66. Implement a stack using an array.
+  67. Implement a stack using a linked list.
+  68. Implement a queue using an array.
+  69. Implement a queue using a linked list.
+  70. Implement a priority queue.
+   
+  ---
+   
+  ## **Set, Map & Hash Table**
+  71. Implement a hash table.
+  72. Find the first non-repeating character in a string.
+  73. Check if two strings are anagrams.
+  74. Find the longest substring without repeating characters.
+  75. Find the intersection of two sets.
+  76. Find the union of two sets.
+  77. Find the difference between two sets.
+  78. Find duplicate characters in a string.
+  79. Find duplicate numbers in an array.
+  80. Count word frequency in a string.
+   
+  ---
+   
+  ## **Graph & Tree Problems**
+  81. Implement a binary search tree (BST).
+  82. Find the height of a binary tree.
+  83. Find the lowest common ancestor in a BST.
+  84. Implement depth-first search (DFS).
+  85. Implement breadth-first search (BFS).
+  86. Check if a tree is balanced.
+  87. Find the shortest path in a graph (Dijkstra’s algorithm).
+  88. Detect a cycle in a graph.
+  89. Find all paths from source to destination in a graph.
+  90. Implement Trie (Prefix Tree) for word search.
+   
+  ---
+   
+  ## **Real-World JavaScript Problems**
+  91. Implement a debounce function.
+  92. Implement a throttle function.
+  93. Implement a deep copy function.
+  94. Implement a promise-based delay function.
+  95. Implement a simple event emitter.
+  96. Implement a rate limiter.
+  97. Parse a CSV file into JSON.
+  98. Implement a basic web scraper using `fetch()`.
+  99. Implement infinite scrolling in JavaScript.
+  100. Implement a basic API fetch using `async/await`.
+   
+  ---
+   
+  var numbers = [2, 3, 2, 5, 3, 6, 2, 5];
+  var frequency = {}; // Empty object to store counts
+   
+  for (var i = 0; i < numbers.length; i++) {
+    var current = numbers[i];
+   
+    if (frequency[current] === undefined) {
+      frequency[current] = 1; // First time we see this number
+    } else {
+      frequency[current] = frequency[current] + 1; // Already exists, add 1
+    }
+  }
+   
+  // Print frequency
+  for (var key in frequency) {
+    console.log(key + " occurs " + frequency[key] + " times");
+  }
+   
+   
+   
+  function isPalindrome(num) {
+      const str = num.toString();
+      const reversed = str.split('').reverse().join('');
+      return str === reversed;
+    }
+   
+    console.log(isPalindrome(121));   // true
+    console.log(isPalindrome(123));   // false
+   
+   
+   
+   
+   
+    function areAnagrams(str1, str2) {
+      // Convert both strings to lowercase
+      str1 = str1.toLowerCase();
+      str2 = str2.toLowerCase();
+   
+      // Early exit if lengths don't match
+      if (str1.length !== str2.length) return false;
+   
+     
+      // Create frequency counter for str1
+      const count = {};
+   
+      for (let i = 0; i < str1.length; i++) {
+          const char = str1[i];
+          count[char] = (count[char] || 0) + 1;
+      }
+   
+      // Decrease frequency based on str2
+      for (let i = 0; i < str2.length; i++) {
+          const char = str2[i];
+          if (!count[char]) {
+              return false; // char not found or used up
+          }
+          count[char]--;
+      }
+   
+      return true; // all counts are zero
+  }
+   
+  // Example usage:
+  console.log(areAnagrams("listen", "silent"));     // true
+  console.log(areAnagrams("triangle", "integral")); // true
+  console.log(areAnagrams("hello", "world"));       // false
+   
+   
+  Sure! Here are the answers for both problems — written in a simple, college-level style using basic loops and logic:
+  ✅ 78. Find duplicate characters in a string
+  🧑‍💻 Code (normal way using loops):
+  var str = "programming";
+  var duplicates = [];
+  for (var i = 0; i < str.length; i++) {
+    var count = 1;
+    var char = str[i];
+    // Skip spaces and already checked characters
+    if (duplicates.includes(char) || char === ' ') {
+      continue;
+    }
+    for (var j = i + 1; j < str.length; j++) {
+      if (char === str[j]) {
+        count++;
+      }
+    }
+    if (count > 1) {
+      duplicates.push(char);
+    }
+  }
+  console.log("Duplicate characters:", duplicates);
+  📦 Output:
+  Duplicate characters: [ 'r', 'g', 'm' ]
+  ✅ 79. Find duplicate numbers in an array
+  🧑‍💻 Code (basic nested loop approach):
+  var numbers = [1, 2, 3, 2, 4, 5, 1, 6];
+  var duplicates = [];
+  for (var i = 0; i < numbers.length; i++) {
+    var count = 1;
+    if (duplicates.includes(numbers[i])) {
+      continue; // Already counted
+    }
+    for (var j = i + 1; j < numbers.length; j++) {
+      if (numbers[i] === numbers[j]) {
+        count++;
+      }
+    }
+    if (count > 1) {
+      duplicates.push(numbers[i]);
+    }
+  }
+  console.log("Duplicate numbers:", duplicates);
+  📦 Output:
+  Duplicate numbers: [ 1, 2 ]
+  Let me know if you'd like these examples using Set, Map, or in another language like C or Python.
+   
+  Great! You're writing a basic smallest() function well.
+  Here’s a list of 50+ basic JavaScript practice problems just like your smallest() function – ideal for college-level and beginner practice:
+  ✅ Basic JavaScript Problems (Beginner – College Level)
+  🔢 Array & Number Operations
+  Find the largest number in an array
+  Find the smallest number in an array ✅
+  Find the second largest number
+  Find the second smallest number
+  Find the sum of all elements in an array
+  Calculate the average of array elements
+  Count even and odd numbers in an array
+  Reverse an array manually
+  Remove duplicates from an array
+  Find missing numbers from a sequence
+  🔁 Loops & Conditions
+  Check if a number is even or odd
+  Find factorial of a number
+  Print Fibonacci series up to n terms
+  Check if a number is prime
+  Find all prime numbers between 1 and 100
+  Check if a number is a palindrome
+  Find the GCD (HCF) of two numbers
+  Find the LCM of two numbers
+  Count number of digits in a number
+  Find the sum of digits of a number
+  📜 String Problems
+  Reverse a string
+  Count vowels and consonants
+  Check if a string is a palindrome
+  Remove spaces from a string
+  Convert string to uppercase and lowercase
+  Count character frequency in a string
+  Capitalize first letter of each word
+  Check if two strings are anagrams
+  Find longest word in a sentence
+  Replace all vowels with a specific character
+  🧮 Math / Logic Based
+  Generate a random number between 1 and 100
+  Check if a year is a leap year
+  Convert Celsius to Fahrenheit
+  Convert decimal to binary
+  Convert binary to decimal
+  Sum of natural numbers up to n
+  Check Armstrong number
+  Count how many times a number appears in an array
+  Multiply all elements of an array
+  Swap two variables without a third variable
+  🧠 Logical / Misc
+  Merge two sorted arrays
+  Sort an array manually (Bubble Sort)
+  Remove a specific element from an array
+  Find common elements between two arrays
+  Find union of two arrays
+  Find intersection of two arrays
+  Check if an element exists in an array (like .includes)
+  Flatten a nested array (1 level)
+  Get all unique values from an array
+  Convert an object to an array of key-value pairs
+  Check if a key exists in an object
+  Loop through an object and print keys/values
+  Use a Set to remove duplicates
+  Use a Map to store key-value pairs
+  Find frequency of each number in an array
+  Would you like example code for any of these? I can start explaining them one by one based on your interest.
+   
+  
+  That's great! Here's a refined and professional version of what you wrote, which you can use in your portfolio, resume, or for documentation purposes:
+   
+  ---
+   
+  ### Experience at PolicyBoss.com
+   
+  **Role**: Full Stack Developer
+  **Organization**: [PolicyBoss.com](https://www.policyboss.com/) – Landmark Insurance Brokers Pvt. Ltd.
+  **Technologies**: **Backend** – Node.js (Express.js), MongoDB | **Frontend** – Angular, React | **Integration** – REST APIs with third-party insurance providers
+   
+  ---
+   
+  ### Responsibilities & Contributions:
+   
+  * **Full Stack Development**:
+   
+    * Built and maintained backend services using **Node.js (Express)** and **MongoDB** for handling insurance-related operations.
+    * Developed responsive and modular frontend applications using both **Angular** and **React**, depending on the module requirements.
+   
+  * **Third-Party API Integrations**:
+   
+    * Integrated multiple third-party insurer APIs (e.g., premium calculator, KYC, quote comparison, proposal generation, and payment processing).
+    * Ensured smooth data flow and accurate premium calculations across different insurance providers.
+   
+  * **UAT and Production Deployment**:
+   
+    * Followed a structured deployment process: initially developed features in UAT (User Acceptance Testing) environment, performed internal testing, and after approvals, deployed to the production environment.
+    * Conducted thorough testing for quote flows, proposal submission, and payment redirection to ensure consistency across insurers.
+   
+  * **Core Modules Developed**:
+   
+    * **Quote Engine**: Displayed multiple insurers' quotes based on user inputs.
+    * **PG/KYC Integration**: Managed secure KYC data collection and integrated with payment gateways (PG).
+    * **Premium Initiation & Proposal APIs**: Built logic to trigger proposal APIs post-premium confirmation.
+    * **PDF Generation & Documentation**: Created proposal PDFs and other customer documents as per insurer guidelines.
+   
+  * **Collaboration & Documentation**:
+   
+    * Worked closely with business teams to understand insurer-specific requirements.
+    * Drafted API flow documents, integration guides, and internal usage manuals to support the dev and QA teams.
+   
+  ---
+   
+  Let me know if you'd like this in resume format or if you want help creating a portfolio or LinkedIn version of it. 
+   
+  Certainly! Here's an in-depth explanation of your role at PolicyBoss.com designed to help you present it confidently in an interview — whether it's for another job, internal promotion, or client discussion. It’s structured around key interview themes: what you did, how you did it, tools used, challenges, and outcomes.
+  🧠 Context: What is PolicyBoss.com?
+  PolicyBoss.com is one of India’s leading InsurTech platforms that connects customers to multiple insurance providers. It simplifies insurance buying by comparing quotes, generating proposals, processing KYC, and integrating with payment gateways.
+  As a Full Stack Developer, I worked end-to-end on developing modules that power the core insurance comparison and purchase journey — from customer input to policy issuance.
+  💼 Role: Full Stack Developer
+  ✅ Tech Stack:
+  Frontend: Angular, React
+  Backend: Node.js (Express)
+  Database: MongoDB
+  Other: API integrations, PDF generation, Postman, Git, Swagger
+  🧩 Key Responsibilities & Project Flow
+  1. Understanding Insurance APIs and Workflow
+  We work with APIs from multiple insurance providers. Each insurer has its own APIs for:
+  Quote Calculation
+  KYC Submission
+  Proposal Generation
+  Premium Initiation
+  PDF Document Generation
+  Payment Processing
+  I study each provider's documentation (usually provided as Swagger/Postman collections or PDFs), then plan how to map it to our system.
+  2. Building API Integration Layer (Express.js)
+  Created middleware in Express.js to communicate with third-party APIs.
+  Handled:
+  Dynamic URL generation with request tokens, IDs
+  Authentication logic (token-based or header-based)
+  Error handling for API failures
+  Response standardization — converted all API responses into a common format for our frontend.
+  📌 Example: For premium quote, we collect input from the user, call all insurers in parallel, and display the results side-by-side.
+  3. Frontend UI Implementation (React/Angular)
+  Developed forms to capture user data like personal details, nominee, travel plan, sum insured, etc.
+  Used Angular Reactive Forms and React Hooks to handle:
+  Real-time validation
+  Conditional rendering (e.g., show “Any Other PED” dropdown based on disease selection)
+  Input sanitization and transformation
+  🧠 Example: If user.age >= 70, we restrict the sum insured options.
+  4. Proposal & Payment Flow
+  Created end-to-end flow:
+  User selects quote → proposal details → KYC → payment gateway
+  Backend:
+  Fetch quote ID → generate proposal → initiate payment
+  Handled callback from the PG API and updated payment status
+  ✅ Ensured that once payment is done, the system:
+  Generates insurer-specific PDF proposal
+  Stores it in MongoDB with status logs
+  Sends email/SMS confirmation
+  5. UAT to Production Deployment
+  Deployed each module first in UAT
+  Coordinated with QA testers and insurance partner teams
+  Fixed any discrepancies between our request/response and what insurers expected
+  Once UAT passed → deployed to production
+  🛠 Tools Used:
+  Postman (for API testing)
+  MongoDB Compass
+  Git + Bitbucket
+  Jira (for task tracking)
+  📊 Outcomes & Impact
+  Helped successfully launch quote + proposal + payment journey for 10+ insurers
+  Reduced proposal rejection rate by handling API-specific data formatting carefully
+  Built reusable API wrapper functions to reduce new insurer onboarding time
+  Ensured performance optimization by batching parallel API calls using Promise.all
+  🤔 Common Interview Questions You Can Expect
+  1. How do you manage API failures or timeout from an insurer?
+  We use try/catch with timeout control. If an insurer API fails, we show other quotes and retry the failed one in the background if required.
+  2. How do you ensure security, especially for KYC and payment?
+  We encrypt PII data before saving it in MongoDB. Payments are handled via HTTPS and tokenized sessions with the PG provider.
+  3. How do you switch between Angular and React in the same org?
+  Different products use different stacks. I follow best practices for both – Reactive Forms in Angular and functional components/hooks in React.
+  🗂 Summary Statement You Can Say in Interviews
+  “At PolicyBoss.com, I’m responsible for building full-stack solutions that connect our users to real-time insurance quotes from multiple providers. I design and implement everything from frontend forms to backend API orchestration using React/Angular, Node.js, and MongoDB. My work includes integrating insurer APIs, handling proposal submissions, generating PDF documents, and managing the payment workflow. I also collaborate with business teams to translate insurer-specific logic into working modules, ensure the solution passes UAT, and then push it to production.”
+  Would you like me to help you prepare this in resume bullet format, or simulate a mock interview with follow-up questions based on this experience? 
+   
+  Bilkul! Agar aapka interview **Softka (Soft Company / SaaS / Product-based)** type company me hai, to aapko apna explanation thoda **clear, simplified, aur real-world problem-solving angle se** rakhna chahiye — taaki interviewer ko lage ki aap **systems ko samajh kar kaam karte ho, sirf integrate nahi karte**.
+
+Main neeche aapke **PolicyBoss.com** experience ka **simplified, polished aur softka-friendly interview version** de raha hoon — jise aap **bol kar bhi confidently explain kar sakte ho**, aur resume me bhi rakh sakte ho.
+
+---
+
+### Experience at PolicyBoss.com
+
+**Role**: Full Stack Developer
+**Company**: [PolicyBoss.com](https://www.policyboss.com/) – Landmark Insurance Brokers Pvt. Ltd.
+**Duration**: \[Add your duration here]
+**Tech Stack**: Node.js (Express.js), MongoDB, React, Angular, REST APIs
+
+---
+
+### What I Did (Simplified for Product/Softka Interviews):
+
+* **Built Full Insurance Flow**:
+  I worked on complete insurance modules — from showing quotes to submitting proposals, KYC, payment, and PDF document generation. I handled both frontend (React/Angular) and backend (Node.js + MongoDB).
+
+* **Integrated with Multiple Insurance Companies**:
+  Each insurance partner provided us with an **API kit** which included:
+
+  * Access credentials (like **username, password, or client ID/secret**)
+  * JWT token generation
+  * APIs for **premium calculation**, **proposal submission**, **IDV values**, **PDF download**, and **payment gateway**
+
+  I used these kits to build stable integrations and handle different logic for each insurer.
+
+* **Authentication & Secure Communication**:
+  Depending on the insurer, I used either **JWT-based authentication** or **basic auth** (username-password) to consume their APIs securely.
+
+* **Real-Time Quote Engine**:
+  I built a service where a user could enter details, and instantly see quotes from multiple insurers. This included calculating premiums using live API responses and comparing them in real-time.
+
+* **Proposal & Payment Logic**:
+  After the user selected a quote, I triggered proposal APIs and initiated payments via the PG (Payment Gateway) integration.
+
+* **KYC and Document Handling**:
+  I integrated the digital **KYC process** (using PAN, Aadhaar, etc.), and managed **PDF documents** like proposals and policy copies — downloaded via API and stored or shared with users.
+
+* **Robust Logging & Error Handling**:
+  Every API request/response (quote, KYC, proposal, PDF, PG) was logged in MongoDB for traceability.
+  This helped in debugging issues and also during insurer audits.
+
+* **Testing & Deployments**:
+  I followed structured releases: first building and testing in **UAT**, then going live to **production** after approvals.
+
+* **Worked with Product & Business Teams**:
+  I regularly discussed with product managers and business teams to understand insurer-specific flows, and updated API logic accordingly.
+  Also prepared integration documents for QA and dev teams.
+
+---
+
+### How to Say It in Interview:
+
+> "Maine ek insurance aggregator platform me kaam kiya jahan mujhe third-party insurer APIs integrate karni hoti thi. Har insurer apna API kit deta tha jisme JWT ya credentials based access hota tha.
+>
+> Quote engine, KYC, proposal, payment, aur PDF flows maine end-to-end handle kiye the. Backend me Node.js use hota tha aur logs hum MongoDB me rakhte the taaki debug aur audit easy ho. Har flow ka proper testing ke baad hi production deployment hota tha.
+>
+> Product aur business teams ke saath milke maine API flows samjhe aur unke hisaab se logic build kiya."
+
+---
+
+Agar aap chahein, to main isko ek **"tell me about your experience" script** bhi bana ke de sakta hoon — jo aap interview me directly bol sako. Batau?
+
+
+
+
+
+Absolutely! Here is the **English version** of your **“Tell me about your experience”** script — polished and professional, but still simple and clear so you can speak it confidently in any technical or HR interview:
+
+---
+
+### ✅ “Tell me about your experience” — Interview Script (English)
+
+> Sure! I worked as a **Full Stack Developer** at **PolicyBoss.com**, which is an online insurance aggregator platform.
+>
+> My primary responsibility was to build and maintain the **end-to-end insurance flow** — from showing quotes, submitting proposals, completing KYC, handling payments, and finally generating PDFs for policies.
+>
+> On the **backend**, I used **Node.js with Express.js**, and stored data using **MongoDB**. On the **frontend**, I worked with both **React** and **Angular**, depending on the module's requirements.
+>
+> One of my major tasks was integrating **third-party insurer APIs**. Each insurer provided an **API kit**, which included:
+>
+> * **Authentication** (either JWT token or basic auth with username/password)
+> * APIs for **premium calculation**
+> * **Proposal submission**
+> * **IDV (Insured Declared Value)**
+> * **PDF document download**
+> * **Payment gateway** integration
+>
+> Using these kits, I developed a **real-time quote engine** that showed multiple insurance options based on user inputs. After the user selected a quote, I handled the full backend flow — triggering proposal APIs, integrating KYC, initiating the payment gateway, and downloading the final PDF.
+>
+> I also implemented **complete logging** for every API request and response — including quotes, KYC, proposals, payments, and PDFs — using MongoDB. This made debugging and auditing much easier.
+>
+> I worked closely with the **business team** to understand specific insurer requirements and updated the flows accordingly.
+>
+> For deployment, we followed a structured approach: features were first built and tested in the **UAT environment**, and only after QA and business approval, we deployed them to **production**.
+
+---
+
+### ⭐ Bonus – If asked about challenges:
+
+> Yes, the biggest challenge was that every insurer had a different API format, and many of them had incomplete or inconsistent documentation.
+> So I had to test each response manually and implement strong error handling and validations to ensure the data flow was smooth.
+
+---
+
+Would you like a **short version** (for HR rounds or intro pitch), or should I convert this into a **PDF resume bullet format** too?
+
+
+
+
+
+
+Of course! Here's the **updated version** of your **"Tell me about your experience"** interview script with the **Postman** part added professionally and smoothly — so it reflects your **real-world practical approach** during API integration:
+
+---
+
+### ✅ “Tell me about your experience” — Updated Interview Script (English, with Postman)
+
+> Sure! I worked as a **Full Stack Developer** at **PolicyBoss.com**, which is an online insurance aggregator platform.
+>
+> My primary responsibility was to build and maintain the **end-to-end insurance flow** — from displaying quotes, submitting proposals, completing KYC, handling payments, and finally generating PDFs for policies.
+>
+> On the **backend**, I used **Node.js with Express.js**, and stored data using **MongoDB**. On the **frontend**, I worked with both **React** and **Angular**, depending on the module's requirements.
+>
+> One of my major tasks was integrating **third-party insurer APIs**. Each insurer provided an **API kit**, which included:
+>
+> * **Authentication** (either JWT tokens or basic auth with username/password)
+> * APIs for **premium calculation**, **proposal submission**, **IDV (Insured Declared Value)**, **PDF generation**, and **payment gateway integration**
+>
+> Before development, I used **Postman** to test each API — including authentication, request/response structures, and edge cases. This helped me understand the insurer’s system behavior before writing production-level code.
+>
+> Using these kits, I developed a **real-time quote engine** that displayed insurance options from multiple providers based on user input. After the user selected a quote, I handled the full backend process — triggering proposal APIs, integrating KYC, initiating payments, and downloading the final PDF document.
+>
+> I also implemented **complete API request and response logging** using MongoDB — covering all major flows like quotes, proposals, KYC, PG, and PDF — which helped in error tracking and audits.
+>
+> I collaborated closely with the **business team** to understand insurer-specific logic and updated the backend flows accordingly.
+>
+> For deployment, we followed a structured process: features were first developed and tested in the **UAT environment**, and only after business approval and QA sign-off, they were moved to **production**.
+
+---
+
+### ⭐ Bonus – If asked about challenges:
+
+> One of the biggest challenges was the inconsistency in API documentation across insurers. Many of them had incomplete or outdated documentation.
+> So I relied heavily on **Postman testing** to manually explore and verify their API behavior, which helped ensure robust error handling and smooth integration.
+
+---
+
+Let me know if you’d like:
+
+* A **shorter version** (for HR rounds or quick intros)
+* A **bullet-point format** for your resume
+* Or a **PDF version** of this answer
+
+I can generate any of them for you.
+
+
+
+Absolutely! Here's a **short and crisp version** of your experience — perfect for **HR rounds, intros, or rapid interviews** where time is limited:
+
+---
+
+### ✅ Short Version — HR-Friendly Intro
+
+> I worked as a **Full Stack Developer** at **PolicyBoss.com**, an online insurance aggregator platform.
+>
+> I was responsible for building the complete insurance flow — from showing quotes, submitting proposals, KYC, payment integration, to generating policy PDFs.
+>
+> I used **Node.js (Express)** and **MongoDB** on the backend, and worked with both **React** and **Angular** on the frontend.
+>
+> My main work involved integrating **third-party insurer APIs**. Each insurer gave us an **API kit** with JWT or basic auth, and endpoints for premium calculation, proposal, IDV, PDF, and payment.
+>
+> I first tested all APIs in **Postman**, and once validated, I implemented them into our system with full error handling and logging.
+>
+> I also collaborated with business teams and followed proper deployment flow — from UAT testing to production release.
+
+---
+
+Let me know if you'd like this in **resume-style bullets**, or want a **1-liner LinkedIn summary** too.
+
+
+
+यहाँ मैं आपके लिए **MERN Stack Developer Interview के लिए Important Topics + Questions** तैयार कर रहा हूँ – categorized और real-interview style में:
+
+---
+
+## ✅ **1. JavaScript Core (Must Know)**
+
+* ❓ `var`, `let`, `const` का फर्क?
+* ❓ Arrow functions vs normal functions?
+* ❓ Shallow copy vs Deep copy?
+* ❓ Event loop और call stack क्या होते हैं?
+* ❓ Closures क्या हैं?
+* ❓ What is hoisting?
+* ❓ Debouncing vs Throttling
+* ❓ Destructuring, Spread, Rest operator
+
+---
+
+## ✅ **2. React.js**
+
+* ❓ React में state और props का फर्क?
+* ❓ useState और useEffect कैसे काम करते हैं?
+* ❓ Controlled vs Uncontrolled Components?
+* ❓ React lifecycle methods (class vs hooks)?
+* ❓ Lifting state up क्या होता है?
+* ❓ React में keys क्यों use होते हैं?
+* ❓ Redux vs Context API?
+* ❓ useSelector, useDispatch क्या करते हैं?
+* ❓ Form handling और validation कैसे करते हैं?
+
+---
+
+## ✅ **3. Node.js + Express.js**
+
+* ❓ Middleware क्या होता है?
+* ❓ req.body, req.params, req.query में फर्क?
+* ❓ REST API क्या होती है?
+* ❓ How to handle errors globally?
+* ❓ JWT authentication कैसे implement करते हैं?
+* ❓ CORS क्या होता है और इसे कैसे handle करते हैं?
+* ❓ Multer का use क्या है (file uploads)?
+
+---
+
+## ✅ **4. MongoDB**
+
+* ❓ Document vs Collection?
+* ❓ Schema design best practices?
+* ❓ Query operators: \$gt, \$lt, \$in, \$regex, \$or
+* ❓ Aggregation pipeline कैसे काम करती है?
+* ❓ Index क्यों बनाते हैं और कैसे बनाते हैं?
+* ❓ Difference: MongoDB Atlas vs Local MongoDB
+* ❓ Populate in Mongoose क्या होता है?
+* ❓ Validation कैसे लगाते हैं schema में?
+
+---
+
+## ✅ **5. MERN Integration & Projects**
+
+* ❓ Frontend से API call कैसे करते हैं (Axios/Fetch)?
+* ❓ CORS errors क्यों आते हैं? कैसे fix करते हैं?
+* ❓ How to structure a full-stack MERN project?
+* ❓ React form → Express API → MongoDB data flow कैसे होता है?
+* ❓ Deployment (Render, Vercel, MongoDB Atlas)
+
+---
+
+## ✅ **6. Coding / Logical Questions (JS based)**
+
+* ✅ Reverse a string
+* ✅ Count vowels/consonants
+* ✅ Prime number check
+* ✅ Factorial of a number
+* ✅ Fibonacci series
+* ✅ Find 2nd largest number in array
+* ✅ Capitalize each word in a string
+* ✅ Swap 2 variables without 3rd
+* ✅ Armstrong number check
+* ✅ CRUD in MongoDB with Express
+
+---
+
+## ✅ **7. System Design (Basic Level)**
+
+* ❓ What is MVC architecture?
+* ❓ How would you design a simple blog?
+* ❓ How to scale a Node.js backend?
+* ❓ Database relationships: 1-to-1, 1-to-many, many-to-many
+
+---
+
+## ✅ Bonus: **HR Questions**
+
+* ❓ Tell me about yourself?
+* ❓ Projects you've worked on?
+* ❓ Why MERN stack?
+* ❓ Challenges faced in your last project?
+* ❓ Are you comfortable with both frontend & backend?
+
+---
+
+अगर आप चाहो तो मैं हर section पर short notes, expected answers, या mock interview questions बना सकता हूँ।
+
+**कौन से topics से शुरू करना चाहोगे? React? Node? MongoDB?**
+
+
+
+
+answer
+
+
+
+
+बहुत अच्छे सवाल हैं! ये चारों system design से related हैं और अक्सर **MERN stack developer interviews** में पूछे जाते हैं। नीचे मैं हर एक को **real-world context + diagrams (text-based) + example से आसान भाषा में** explain कर रहा हूँ:
+
+---
+
+## 🔷 **1. What is MVC architecture?**
+
+**✅ MVC = Model, View, Controller**
+
+यह एक architectural pattern है जो app को 3 हिस्सों में divide करता है:
+
+```
+      User
+        ↓
+     [View]          👀 UI / Frontend (React, HTML)
+        ↓
+    [Controller]     🧠 Logic / Routes / API (Express.js)
+        ↓
+     [Model]         💾 Data / Schema / DB (Mongoose/MongoDB)
+```
+
+### 🔹 Explanation:
+
+* **Model:** Data और database से related logic (Mongoose schema)
+* **View:** जो user को दिखता है (React)
+* **Controller:** Logic और request handling (Express routes)
+
+### 🧠 Benefit:
+
+* Code अलग-अलग responsibility में split होता है ⇒ easy to manage and scale
+
+---
+
+## 🔷 **2. How would you design a simple blog?**
+
+### Features:
+
+* User signup/login
+* Create, edit, delete blog posts
+* Like/comment on posts
+* Public blog listing
+
+### 🔧 Tech Stack (MERN):
+
+* **Frontend:** React + Bootstrap
+* **Backend:** Express.js
+* **Database:** MongoDB (Mongoose)
+
+### 🔸 Data Models:
+
+**User:**
+
+```js
+{
+  _id,
+  name,
+  email,
+  password,
+  createdAt
+}
+```
+
+**Post:**
+
+```js
+{
+  _id,
+  title,
+  content,
+  author: ObjectId (ref to User),
+  likes: Number,
+  comments: [ObjectId]
+}
+```
+
+**Comment:**
+
+```js
+{
+  _id,
+  postId: ObjectId,
+  userId: ObjectId,
+  commentText,
+  createdAt
+}
+```
+
+### 🔁 Routes:
+
+* `POST /auth/register`
+* `POST /posts` (create post)
+* `GET /posts` (get all)
+* `PUT /posts/:id`
+* `DELETE /posts/:id`
+
+---
+
+## 🔷 **3. How to scale a Node.js backend?**
+
+### ✅ Tips to scale:
+
+1. **Use Clustering:**
+
+   * Use multiple CPU cores (`cluster` module or PM2)
+
+2. **Use Load Balancer:**
+
+   * Nginx or AWS ELB to distribute load across servers
+
+3. **Optimize DB:**
+
+   * Use indexes, avoid unnecessary queries, pagination
+
+4. **Use Caching:**
+
+   * Redis for session/token caching, frequently accessed data
+
+5. **Use Message Queues:**
+
+   * For background tasks (RabbitMQ, Bull with Redis)
+
+6. **Dockerize Your App:**
+
+   * Use containers for consistent deployment
+
+7. **Break into Microservices (if large):**
+
+   * Separate auth, posts, uploads, etc.
+
+---
+
+## 🔷 **4. Database Relationships**
+
+### ✅ Types:
+
+1. **One-to-One:**
+
+   * Example: User ↔ Profile
+   * Each user has one profile
+
+2. **One-to-Many:**
+
+   * Example: User → Posts
+   * One user can write many posts
+
+3. **Many-to-Many:**
+
+   * Example: Post ↔ Tags
+   * One post can have many tags and one tag can be on many posts
+
+### 🔹 Implementation in MongoDB (via Mongoose):
+
+```js
+// One-to-Many
+const PostSchema = new mongoose.Schema({
+  title: String,
+  author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+});
+
+// Many-to-Many
+const TagSchema = new mongoose.Schema({
+  name: String,
+  posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }]
+});
+```
+
+---
+
+अगर आप चाहो तो मैं blog app का **MERN-based complete architecture diagram**, या **MongoDB schema with code** भी बना सकता हूँ।
+
+👉 किस topic को और deep में चाहते हो? या mock interview Q\&A भी बनाऊं?
+
+
+बहुत बढ़िया सवाल हैं MongoDB interview preparation के लिए! चलो एक-एक करके सारे doubts clear करते हैं – हिंदी में, आसान और conversational तरीके से:
+
+---
+
+### ❓ **Document vs Collection**
+
+* **Document**: MongoDB में एक record को **document** कहते हैं। ये JSON जैसा होता है (BSON format में actually)। Example:
+
+  ```json
+  {
+    "name": "Amit",
+    "age": 25,
+    "skills": ["Node.js", "React"]
+  }
+  ```
+
+* **Collection**: एक **collection** documents का group होता है — मतलब table जैसा होता है अगर SQL से compare करें। Example: `users` नाम की collection में multiple user documents होंगे।
+
+📌 **Shortcut समझो**:
+
+```
+Table ~ Collection
+Row ~ Document
+```
+
+---
+
+### ❓ **Schema Design Best Practices**
+
+1. **Embed vs Reference**:
+
+   * अगर data tightly related है और अक्सर साथ में चाहिए → **Embed** करो (nested documents).
+   * अगर loosely coupled है या बार-बार repeat होता है → **Reference** use करो (manual joins).
+
+2. **Avoid Deep Nesting**:
+
+   * 2-3 levels तक nesting ठीक है, उससे ज्यादा confusing और inefficient हो सकता है।
+
+3. **Predictable Access Pattern**:
+
+   * सोचो app कैसे data access करेगा – उसी हिसाब से schema बनाओ।
+
+4. **Avoid Large Documents**:
+
+   * MongoDB की limit 16MB/document है। उससे बड़े documents performance degrade करेंगे।
+
+5. **Use Index Wisely**:
+
+   * Query fast करनी है? Index बनाओ। लेकिन ज्यादा index भी performance down कर सकते हैं (writes slow हो जाते हैं)।
+
+---
+
+### ❓ **Query Operators Explained**
+
+| Operator | काम क्या करता है? | Example                                                   |
+| -------- | ----------------- | --------------------------------------------------------- |
+| `$gt`    | Greater than      | `{ age: { $gt: 18 } }`                                    |
+| `$lt`    | Less than         | `{ price: { $lt: 1000 } }`                                |
+| `$in`    | Match from list   | `{ city: { $in: ["Delhi", "Mumbai"] } }`                  |
+| `$regex` | Pattern match     | `{ name: { $regex: "^A" } }` → A से शुरू होने वाले        |
+| `$or`    | OR condition      | `{ $or: [ { age: { $lt: 20 } }, { age: { $gt: 50 } } ] }` |
+
+---
+
+### ❓ **Aggregation Pipeline कैसे काम करती है?**
+
+Aggregation pipeline एक series of steps होती है जिसमें documents को transform किया जाता है — जैसे data को filter करना, group करना, sort करना, etc.
+
+```js
+db.orders.aggregate([
+  { $match: { status: "delivered" } },     // Filter
+  { $group: { _id: "$customerId", total: { $sum: "$amount" } } }, // Group by customer
+  { $sort: { total: -1 } }                 // Descending sort
+]);
+```
+
+💡 **हर stage में एक नया transformation होता है। जैसे pipe में पानी जाता है, वैसे ही document एक-एक stage से गुजरते हैं।**
+
+---
+
+### ❓ **Index क्यों बनाते हैं और कैसे बनाते हैं?**
+
+**क्यों?**
+
+* Index बनाने से **queries fast** होती हैं।
+* बिना index के MongoDB हर document check करता है → **collection scan** (slow).
+* Index होने से directly match होता है → **index scan** (fast).
+
+**कैसे?**
+
+```js
+// 1. Single field index
+db.users.createIndex({ email: 1 });  // 1 = ascending
+
+// 2. Compound index
+db.users.createIndex({ age: 1, name: -1 }); // multiple fields
+
+// 3. Text index (for search)
+db.articles.createIndex({ title: "text", description: "text" });
+```
+
+📌 **Check index:**
+
+```js
+db.users.getIndexes();
+```
+
+---
+
+अगर चाहो तो मैं एक छोटा MongoDB hands-on practice doc भी बना सकता हूँ जिसमें सारे concepts demo के साथ हों। बताना 👍
+बहुत बढ़िया! ये सारे सवाल Express.js + Node.js backend interviews में अक्सर पूछे जाते हैं। चलो एक-एक करके clear करते हैं – फिर से, हिंदी में आसान भाषा में:
+
+---
+
+### ❓ **Middleware क्या होता है?**
+
+**Middleware** एक function होता है जो request और response के बीच चलता है।
+
+> 📦 Basically: जब request आती है, तो middleware उसे process करता है – चाहे वो logging हो, authentication हो, body parsing हो, etc.
+
+```js
+// Simple middleware
+const logger = (req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next(); // अगले middleware को call करो
+};
+
+app.use(logger); // globally use
+```
+
+🔁 **Types**:
+
+* Built-in: `express.json()`, `express.urlencoded()`
+* Third-party: `cors`, `morgan`
+* Custom: खुद के बनाए हुए functions
+
+---
+
+### ❓ **req.body vs req.params vs req.query**
+
+| Property     | कहाँ से आता है?     | Example URL                       | Use Case                    |
+| ------------ | ------------------- | --------------------------------- | --------------------------- |
+| `req.body`   | POST/PUT की body से | (Body JSON: `{ name: "Amit" }`)   | Form data, JSON input       |
+| `req.params` | URL path से         | `/user/123` → `req.params.id`     | Route parameter             |
+| `req.query`  | URL query string से | `/search?q=books` → `req.query.q` | Filters, pagination, search |
+
+---
+
+### ❓ **REST API क्या होती है?**
+
+**REST (Representational State Transfer)** एक architecture है APIs बनाने का, जो HTTP methods को use करता है।
+
+📦 Example (User API):
+
+| Method | URL          | काम                         |
+| ------ | ------------ | --------------------------- |
+| GET    | `/users`     | सभी users लाओ               |
+| GET    | `/users/:id` | एक user लाओ                 |
+| POST   | `/users`     | नया user बनाओ               |
+| PUT    | `/users/:id` | पूरे user को update करो     |
+| PATCH  | `/users/:id` | किसी एक field को update करो |
+| DELETE | `/users/:id` | user delete करो             |
+
+✅ Stateless, Uniform, Cacheable – ये REST की खास बातें हैं।
+
+---
+
+### ❓ **Global Error Handling कैसे करें?**
+
+Express में एक special middleware होता है जो error handle करता है:
+
+```js
+// Error-handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(err.status || 500).json({
+    success: false,
+    message: err.message || "Something went wrong!",
+  });
+});
+```
+
+📌 अपने route handlers में अगर error आए, तो `next(err)` call करो ताकि वो इस middleware तक पहुंच जाए।
+
+---
+
+### ❓ **JWT Authentication कैसे implement करते हैं?**
+
+📌 JWT (JSON Web Token) का use होता है **authentication** के लिए – मतलब user को verify करने के लिए।
+
+#### Steps:
+
+1. **Login Route** – User से credentials लो और JWT बनाओ:
+
+```js
+const jwt = require("jsonwebtoken");
+
+app.post("/login", (req, res) => {
+  const user = { id: 1 }; // DB से validate करो
+  const token = jwt.sign(user, "SECRET_KEY", { expiresIn: "1h" });
+  res.json({ token });
+});
+```
+
+2. **Middleware to protect routes**:
+
+```js
+const authenticate = (req, res, next) => {
+  const token = req.headers.authorization?.split(" ")[1];
+  if (!token) return res.sendStatus(401);
+
+  try {
+    const decoded = jwt.verify(token, "SECRET_KEY");
+    req.user = decoded;
+    next();
+  } catch (err) {
+    res.sendStatus(403);
+  }
+};
+```
+
+3. **Protected Route**:
+
+```js
+app.get("/dashboard", authenticate, (req, res) => {
+  res.send("Welcome, user " + req.user.id);
+});
+```
+
+---
+
+### ❓ **CORS क्या होता है और इसे कैसे handle करते हैं?**
+
+**CORS (Cross-Origin Resource Sharing)** एक security feature है जो browser रोकता है जब कोई एक domain दूसरे domain से data मंगाता है।
+
+> 🛑 Example: Frontend `localhost:3000` है और Backend `localhost:7000` – तो CORS error आ सकता है।
+
+### Solution:
+
+```js
+const cors = require("cors");
+app.use(cors()); // सभी origins allow हो जाएंगे
+
+// या custom config:
+app.use(cors({
+  origin: "http://localhost:3000",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+```
+
+---
+
+### ❓ **Multer क्या है और File Uploads में कैसे use करते हैं?**
+
+**Multer** एक middleware है जो form-data (file uploads) को handle करता है।
+
+#### Step-by-step:
+
+1. Install:
+
+```bash
+npm install multer
+```
+
+2. Setup:
+
+```js
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" }); // Upload folder
+```
+
+3. Route:
+
+```js
+app.post("/upload", upload.single("myfile"), (req, res) => {
+  console.log(req.file); // file info
+  res.send("File uploaded");
+});
+```
+
+🖼️ For multiple files:
+
+```js
+upload.array("photos", 5)
+```
+
+---
+
+अगर चाहो तो मैं इन सब concepts का एक mini backend project भी बना सकता हूँ जिसमें JWT, error handling, file uploads सब एक साथ हों। बताओ 😊
+
+
+बहुत बढ़िया! React.js के ये सवाल इंटरव्यू में बार-बार पूछे जाते हैं। चलो एक-एक करके इन सभी का जवाब आसान हिंदी में समझते हैं:
+
+---
+
+### ❓ **React में state और props का फर्क?**
+
+| 🔸        | **State**                          | **Props**                     |
+| --------- | ---------------------------------- | ----------------------------- |
+| Ownership | Component का खुद का data           | Parent से आता है              |
+| Editable? | हाँ (via `setState` or `useState`) | ❌ Read-only                   |
+| Use Case  | Internal changes track करने के लिए | Component को data देने के लिए |
+
+➡️ **Example**:
+
+```js
+function Greeting(props) {
+  return <h1>Hello, {props.name}</h1>; // props.name
+}
+
+function App() {
+  return <Greeting name="Amit" />;
+}
+```
+
+---
+
+### ❓ **useState और useEffect कैसे काम करते हैं?**
+
+#### ✅ `useState` – state बनाने के लिए
+
+```js
+const [count, setCount] = useState(0);
+```
+
+#### ✅ `useEffect` – side-effects के लिए (e.g. API call, setTimeout, event listener)
+
+```js
+useEffect(() => {
+  console.log("Component mounted or updated");
+
+  return () => {
+    console.log("Cleanup before unmount");
+  };
+}, [count]); // dependency array
+```
+
+---
+
+### ❓ **Controlled vs Uncontrolled Components**
+
+| 🔸           | Controlled               | Uncontrolled           |
+| ------------ | ------------------------ | ---------------------- |
+| Data control | React के हाथ में होता है | DOM के हाथ में होता है |
+| Value        | `value={state}`          | `defaultValue="..."`   |
+| Ref usage    | ज़रूरत नहीं होती         | ज़रूरी होता है         |
+
+➡️ **Controlled Example**:
+
+```js
+<input value={name} onChange={e => setName(e.target.value)} />
+```
+
+➡️ **Uncontrolled Example**:
+
+```js
+<input defaultValue="Amit" ref={inputRef} />
+```
+
+---
+
+### ❓ **React Lifecycle Methods (Class vs Hooks)**
+
+| 🔸 Lifecycle | **Class Component**    | **Hook Equivalent**                        |
+| ------------ | ---------------------- | ------------------------------------------ |
+| Mount        | `componentDidMount`    | `useEffect(() => {}, [])`                  |
+| Update       | `componentDidUpdate`   | `useEffect(() => {}, [deps])`              |
+| Unmount      | `componentWillUnmount` | `useEffect(() => { return () => {} }, [])` |
+
+---
+
+### ❓ **Lifting State Up क्या होता है?**
+
+जब दो components को एक ही data की जरूरत हो, तो उस data को उनके common parent में ले जाना **lifting state up** कहलाता है।
+
+➡️ Example:
+
+```js
+// Parent component
+function App() {
+  const [count, setCount] = useState(0);
+  return (
+    <>
+      <Counter value={count} />
+      <IncrementButton onClick={() => setCount(count + 1)} />
+    </>
+  );
+}
+```
+
+---
+
+### ❓ **React में keys क्यों use होते हैं?**
+
+React में जब हम कोई list render करते हैं (e.g. `map()` से), तो हर item को uniquely पहचानने के लिए **key** use होती है।
+
+> ⚠️ Key change होने पर React समझता है कि item नया है → re-render करता है।
+
+```js
+{users.map(user => <li key={user.id}>{user.name}</li>)}
+```
+
+---
+
+### ❓ **Redux vs Context API**
+
+| Feature     | **Redux**                    | **Context API**                        |
+| ----------- | ---------------------------- | -------------------------------------- |
+| Use Case    | Complex state management     | Simple data sharing (theme, user info) |
+| Boilerplate | ज़्यादा (actions, reducers)  | कम                                     |
+| Performance | Better control via selectors | May cause re-renders                   |
+| Dev Tools   | Advanced debugging tools     | नहीं                                   |
+
+➡️ If app बड़ी है और states अलग-अलग जगह manage करनी हैं → **Redux**
+➡️ Simple login info या theme share करनी है → **Context API**
+
+---
+
+### ❓ **useSelector, useDispatch क्या करते हैं?**
+
+* **`useSelector`** – Redux store से state पढ़ने के लिए
+
+```js
+const counter = useSelector(state => state.counter);
+```
+
+* **`useDispatch`** – Redux action dispatch करने के लिए
+
+```js
+const dispatch = useDispatch();
+dispatch({ type: "INCREMENT" });
+```
+
+---
+
+### ❓ **Form Handling और Validation कैसे करते हैं?**
+
+#### 1. **Form Handling** (Controlled way):
+
+```js
+const [email, setEmail] = useState("");
+
+<form onSubmit={handleSubmit}>
+  <input value={email} onChange={e => setEmail(e.target.value)} />
+</form>
+```
+
+#### 2. **Validation (Simple)**:
+
+```js
+if (!email.includes("@")) {
+  alert("Invalid Email");
+}
+```
+
+#### 3. **With libraries** (optional):
+
+* ✅ `formik` + `yup` → standard combo for complex forms.
+
+---
+
+अगर तुम चाहो तो मैं एक React mini project बना सकता हूँ जिसमें Redux, Form validation, API call, और state lifting—all concepts included हों। Ready बताना 💻✅
+
+
+
+Great! Let's dive into **JavaScript Event Loop** — ये एक ऐसा concept है जो हर React (या JS) developer को अच्छे से समझना चाहिए, क्योंकि ये ही define करता है कि आपका code कैसे और कब execute होता है।
+
+---
+
+## 🧠 What is the **Event Loop**?
+
+JavaScript एक **single-threaded** language है — इसका मतलब है एक time पर एक ही task run हो सकता है. लेकिन फिर भी JS asynchronous चीज़ें कैसे handle करता है?
+
+👉 इसका जवाब है: **Event Loop**
+It allows JS to perform **non-blocking** operations using:
+
+* Call Stack
+* Web APIs (like `setTimeout`, `fetch`)
+* Callback Queue / Task Queue
+* Microtask Queue (Promises)
+* Event Loop
+
+---
+
+## 🧩 Event Loop Architecture (Simplified)
+
+```
+┌──────────────────────┐
+│  Call Stack          │   ← JS runs code here
+└──────────────────────┘
+         ▲
+         │
+         ▼
+┌──────────────────────┐
+│  Task Queue          │   ← setTimeout, setInterval, DOM Events
+└──────────────────────┘
+         ▲
+         │
+         ▼
+┌──────────────────────┐
+│  Microtask Queue     │   ← Promises, MutationObserver
+└──────────────────────┘
+         ▲
+         │
+         ▼
+  🚀 Event Loop
+```
+
+---
+
+## 🔥 Example 1: `setTimeout` vs Promise
+
+```js
+console.log("1");
+
+setTimeout(() => console.log("2"), 0);
+
+Promise.resolve().then(() => console.log("3"));
+
+console.log("4");
+```
+
+### Output:
+
+```
+1
+4
+3
+2
+```
+
+### क्यों?
+
+* `1`, `4`: synchronous → Call Stack
+* `Promise`: microtask → Microtask Queue
+* `setTimeout`: macro task → Task Queue
+
+👉 **Microtask Queue को Task Queue से पहले process किया जाता है**
+
+---
+
+## 🧪 Example 2: Nested Promises
+
+```js
+Promise.resolve().then(() => {
+  console.log("A");
+  Promise.resolve().then(() => console.log("B"));
+});
+
+Promise.resolve().then(() => console.log("C"));
+```
+
+### Output:
+
+```
+A
+C
+B
+```
+
+### क्यों?
+
+* `A` runs first (first microtask)
+* `C` is next
+* `B` is nested inside `A` → it gets queued after current microtasks
+
+---
+
+## ⏱️ Real World React Example
+
+```jsx
+useEffect(() => {
+  console.log("Effect Start");
+
+  setTimeout(() => {
+    console.log("setTimeout");
+  }, 0);
+
+  Promise.resolve().then(() => {
+    console.log("Promise");
+  });
+
+  console.log("Effect End");
+}, []);
+```
+
+### Output:
+
+```
+Effect Start
+Effect End
+Promise
+setTimeout
+```
+
+> `Promise` (microtask) पहले run होता है, फिर `setTimeout` (macro task)
+
+---
+
+## 🔁 In Short:
+
+| Task Type        | Goes Where      | Runs When                             |
+| ---------------- | --------------- | ------------------------------------- |
+| Synchronous code | Call Stack      | Immediately                           |
+| `setTimeout`     | Task Queue      | After current call stack + microtasks |
+| `Promise.then`   | Microtask Queue | After call stack, before Task Queue   |
+
+---
+
+## 💡 Tips for Interviews
+
+* Promises are **microtasks**, `setTimeout` is a **macrotask**
+* Event Loop always clears **microtasks before** moving to next macrotask
+* JS is single-threaded, but browser APIs allow async behavior
+* React batching and effects use Event Loop mechanics under the hood
+
+---
+
+अगर चाहो तो मैं तुम्हें `event loop` पर एक **code puzzle quiz** दे सकता हूँ — जो interview में पूछी जा सकती है।
+बोलो तैयार हो? 😄
+
+
+
+बहुत बढ़िया! अगर आप **Node.js + Express.js** की तैयारी कर रहे हो (specially for interviews), तो मैं आपको कुछ **challenging/tricky questions** दूँगा जो concepts, edge cases, और real-world knowledge को test करते हैं।
+
+---
+
+## 🔥 Challenging Node.js + Express.js Interview Questions
+
+### 🧠 1. **What happens if you call `res.send()` twice in Express?**
+
+#### Example:
+
+```js
+app.get('/', (req, res) => {
+  res.send("First response");
+  res.send("Second response"); // What happens?
+});
+```
+
+✅ **Answer**: Error: `Can't set headers after they are sent`.
+Express will crash or log an error because HTTP response can be sent only once per request.
+
+---
+
+### 🔐 2. **How would you handle global error in Express middleware?**
+
+✅ Use a **custom error-handling middleware** with 4 parameters:
+
+```js
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: err.message });
+});
+```
+
+🔁 Interview follow-up: "How would you differentiate operational vs programmer error?"
+
+---
+
+### 🔄 3. **What is the difference between `app.use()` and `app.get()`?**
+
+| Method      | Used for                                   |
+| ----------- | ------------------------------------------ |
+| `app.use()` | For middleware (runs on all methods)       |
+| `app.get()` | For handling GET request to specific route |
+
+---
+
+### 🧵 4. **What is middleware chaining? Can you demonstrate it?**
+
+```js
+function logger(req, res, next) {
+  console.log(req.method, req.url);
+  next();
+}
+
+function auth(req, res, next) {
+  if (req.headers.token) {
+    next();
+  } else {
+    res.status(401).send("Unauthorized");
+  }
+}
+
+app.get('/secure', logger, auth, (req, res) => {
+  res.send("Secret data");
+});
+```
+
+👉 Interviewer may ask: "What happens if you forget to call `next()`?"
+
+---
+
+### 🧼 5. **What is `next('route')` and `next('error')`?**
+
+* `next('route')`: Skips current middleware and goes to next matching route.
+* `next(err)`: Triggers the error-handling middleware.
+
+---
+
+### 🧵 6. **Explain the lifecycle of a request in Express.**
+
+1. Request hits Express server
+2. Middlewares run in order (like body-parser, logger, etc.)
+3. Matched route handler runs
+4. `res.send()` or `res.json()` sends the response
+5. If error: Error-handling middleware runs
+
+---
+
+### 📦 7. **What is the difference between `require()` and `import` in Node.js?**
+
+* `require()` is CommonJS
+* `import` is ESModule (only in latest Node versions with `"type": "module"`)
+
+> Follow-up: "How do you mix both? Can you use `__dirname` with ESModules?"
+
+---
+
+### ⏱️ 8. **How to handle async errors in Express routes?**
+
+Wrong way:
+
+```js
+app.get('/', async (req, res) => {
+  const user = await getUser(); // If throws, unhandled
+  res.send(user);
+});
+```
+
+✅ Correct:
+
+```js
+app.get('/', asyncHandler(async (req, res) => {
+  const user = await getUser();
+  res.send(user);
+}));
+```
+
+Use a wrapper like:
+
+```js
+const asyncHandler = fn => (req, res, next) =>
+  Promise.resolve(fn(req, res, next)).catch(next);
+```
+
+---
+
+### 🔁 9. **What is the difference between `process.nextTick()` and `setImmediate()`?**
+
+| Function             | Executes                                      |
+| -------------------- | --------------------------------------------- |
+| `process.nextTick()` | Before event loop continues (higher priority) |
+| `setImmediate()`     | After I/O events, in the next tick            |
+
+---
+
+### 🧪 10. **What is the difference between `res.end()`, `res.send()`, and `res.json()`?**
+
+* `res.end()`: Ends the response without data (or with raw data)
+* `res.send()`: Sends text, buffer, or object
+* `res.json()`: Sends object with proper JSON headers
+
+---
+
+## 🔥 Bonus: Rapid-Fire Tricky Concepts
+
+| Question                                   | One-Line Answer                                                                       |
+| ------------------------------------------ | ------------------------------------------------------------------------------------- |
+| Can you return data from middleware?       | No, use `res.send()` or `next()`                                                      |
+| How to limit request body size?            | `express.json({ limit: '10kb' })`                                                     |
+| What is `helmet` used for?                 | Adds security headers                                                                 |
+| How to handle 404 in Express?              | Add a middleware at the end `app.use((req, res)=> res.status(404).send('Not Found'))` |
+| How to share variables across middlewares? | Use `req` object (`req.user = {...}`)                                                 |
+
+---
+
+## ✅ Want Hands-on?
+
+I can:
+
+* Give you code-based puzzles (`predict output`)
+* Mock interview with live debugging
+* Build a custom middleware or router challenge
+
+बोलो, कौनसा तरीका ट्राय करना चाहोगे? 💻🔥
+
+
+बहुत बढ़िया! अगर आप **API design** और **database-related** concepts की तैयारी कर रहे हो (specially MERN stack या Node.js backend के लिए), तो ये टॉपिक बहुत ही जरूरी हैं — interviews में अक्सर इसी से system design और real-world thinking को test किया जाता है।
+
+---
+
+## 🚀 API Design – Core Concepts + Interview Questions
+
+### ✅ 1. **REST vs RESTful APIs**
+
+> क्या फर्क है?
+
+* **REST**: A design principle (not a protocol) — Stateless, Resource-based
+* **RESTful API**: An API that follows REST principles strictly
+
+---
+
+### 📍 2. **Resource Naming Conventions**
+
+| Operation       | URL Example      | Method |
+| --------------- | ---------------- | ------ |
+| Get all users   | `/api/users`     | GET    |
+| Get single user | `/api/users/:id` | GET    |
+| Create user     | `/api/users`     | POST   |
+| Update user     | `/api/users/:id` | PUT    |
+| Delete user     | `/api/users/:id` | DELETE |
+
+> ❌ Don’t use verbs in route (`/getUsers`, `/createUser`)
+> ✅ Use nouns (`/users`)
+
+---
+
+### 🔐 3. **Authentication Best Practice**
+
+* Use `POST /auth/login` and return **JWT token**
+* Protect private routes using middleware
+
+```js
+// Middleware example
+function verifyToken(req, res, next) {
+  const token = req.headers.authorization?.split(" ")[1];
+  if (!token) return res.status(401).json({ message: "Unauthorized" });
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch {
+    return res.status(401).json({ message: "Invalid token" });
+  }
+}
+```
+
+---
+
+### ⚙️ 4. **Versioning Your APIs**
+
+```http
+GET /api/v1/users
+```
+
+> Interview Q: "Why use versioning?"
+> ✅ So that new changes don’t break old clients.
+
+---
+
+### 📦 5. **Pagination, Filtering, Sorting**
+
+```http
+GET /api/products?page=2&limit=10&sort=price&category=shirts
+```
+
+✅ Avoid sending 10,000 records at once — use limit/offset or cursor-based pagination.
+
+---
+
+### 📄 6. **Status Codes That Matter**
+
+| Code | Meaning      |
+| ---- | ------------ |
+| 200  | OK           |
+| 201  | Created      |
+| 204  | No Content   |
+| 400  | Bad Request  |
+| 401  | Unauthorized |
+| 403  | Forbidden    |
+| 404  | Not Found    |
+| 500  | Server Error |
+
+---
+
+## 🧠 Database Design (MongoDB or SQL)
+
+### ✅ 1. **Normalization vs Denormalization**
+
+| Term            | Description                                 |
+| --------------- | ------------------------------------------- |
+| Normalization   | Break into small related tables/collections |
+| Denormalization | Embed or duplicate for fast reads           |
+
+> MongoDB में हम अक्सर denormalize करते हैं (like `user.cart = [items]`)
+
+---
+
+### 📌 2. **One-to-Many vs Many-to-Many in MongoDB**
+
+#### Example – One-to-Many (User → Posts)
+
+```js
+// In Post model
+userId: ObjectId("userId")
+```
+
+#### Example – Many-to-Many (User ↔ Courses)
+
+```js
+// User model
+enrolledCourses: [ObjectId("courseId")]
+
+// Course model
+students: [ObjectId("userId")]
+```
+
+---
+
+### 🔄 3. **ACID vs BASE**
+
+| Term | DB Type | Meaning               |
+| ---- | ------- | --------------------- |
+| ACID | SQL     | Strong consistency    |
+| BASE | NoSQL   | Eventually consistent |
+
+> Interview Q: "Is MongoDB ACID?"
+> ✅ It supports **ACID for single-document transactions**, and **multi-document transactions since v4.0**
+
+---
+
+### 🔍 4. **Indexes in MongoDB**
+
+```js
+User.createIndex({ email: 1 }); // ascending index
+```
+
+✅ Improves query performance, but comes with trade-offs (write speed, disk size)
+
+---
+
+## 📘 Real-World Design Interview Example
+
+> **Design a system for blogging (like Medium):**
+
+### Tables/Collections:
+
+* `users`: name, email, password
+* `posts`: title, content, authorId
+* `comments`: text, postId, authorId
+* `likes`: postId, userId
+
+### API Examples:
+
+* `POST /api/posts` → Create new post
+* `GET /api/posts?author=xyz&tag=js&page=1` → Paginated + Filtered
+* `POST /api/posts/:id/comments` → Add comment
+* `POST /api/posts/:id/like` → Like a post
+
+---
+
+## 🧪 Bonus Questions
+
+| Topic               | Question                                                   |
+| ------------------- | ---------------------------------------------------------- |
+| MongoDB Aggregation | How would you get top 5 most-liked posts?                  |
+| Transactions        | How to make sure stock is updated only if order is placed? |
+| Joins in MongoDB    | How to populate user data in post result?                  |
+| Soft delete         | How would you implement soft delete in API?                |
+| Rate limiting       | How to protect your API from abuse?                        |
+
+---
+
+## 🚀 Want More?
+
+I can give you:
+
+* ✅ **API design project challenge** (e.g., e-commerce, social app)
+* ✅ **MongoDB aggregation pipelines practice**
+* ✅ **Mock interview round on REST & DB**
+
+बोलो, क्या practice करना चाहोगे – एक छोटा सा real-world design, या tricky Mongo queries?
+
+
+
+Great! नीचे आपको एक **complete professional interview intro** मिल रहा है जो आपके पूरे 2+ साल के experience को cover करता है, दोनों companies (Virtual SCM Pvt Ltd + PolicyBoss.com), आपकी tech stack (MERN), tools like **Postman**, और आपकी **educational background (MCA from Pune)** को भी include करता है।
+
+---
+
+### ✅ “Tell me about your experience” — Full Interview Script with Background
+
+> Sure! I have **2+ years of experience** as a **Full Stack Developer** with expertise in the **MERN stack**.
+>
+> I started my career at **Virtual SCM Pvt Ltd**, where I worked as a MERN developer. There, I was responsible for building web applications using **MongoDB, Express.js, React, and Node.js**. I worked on several features like **user authentication, dashboards, dynamic forms**, and **RESTful APIs**, ensuring good performance and responsiveness.
+>
+> I also actively used **Postman** to test backend APIs, especially while debugging issues or validating API response structures. It helped me reduce errors during integration with the frontend.
+>
+> Currently, I am working at **PolicyBoss.com**, which is an online insurance aggregator platform.
+>
+> My primary responsibility here is to build and maintain the **end-to-end insurance flow** — including quote display, proposal submission, KYC, payment integration, and PDF generation.
+>
+> On the **backend**, I work with **Node.js and Express.js**, using **MongoDB** for data storage. On the **frontend**, I handle both **React** and **Angular**, depending on the module requirements.
+>
+> A key part of my role involves **integrating third-party insurer APIs**. Each API kit includes:
+>
+> * **Authentication** (JWT or basic auth)
+> * APIs for **premium calculation**, **proposal**, **IDV**, **payment**, and **PDF**
+>
+> I use **Postman** extensively to test these APIs before development — to validate tokens, understand request-response structures, and handle edge cases.
+>
+> I built a **real-time quote engine** that fetches and displays quotes from multiple insurers based on user input. Once the user selects a plan, I handle proposal submission, KYC validation, payment processing, and downloading of the final policy PDF.
+>
+> I also implemented **API request/response logging** in MongoDB for better error tracking and audit trails across all flows.
+>
+> I work closely with the **business and QA teams**, ensuring all features go through **UAT testing** and only after approval, we deploy to **production**.
+>
+> Academically, I have completed my **MCA (Master of Computer Applications)** from **Pune**.
+
+---
+
+### 🔚 Optional Closing Line (add if asked about career goals or strengths):
+
+> I enjoy working on backend-heavy applications with strong API integration logic, and I’m always looking to learn and improve both my frontend and backend skills. I’m confident in my ability to take ownership of modules and deliver clean, maintainable code.
+
+---
+
+अगर आप चाहें तो मैं इसका छोटा version भी बना सकता हूँ जो आप intro में 1-2 मिनट में बोल सको। बताइए?
+
+
+Tell me about your experience” — Updated Interview Script (Current First)
+Sure! I’m currently working as a Full Stack Developer at PolicyBoss.com, which is an online insurance aggregator platform.
+My core responsibility here is to manage the entire insurance flow — from showing quotes to submitting proposals, handling KYC, integrating payment gateways, and finally generating policy PDFs.
+On the backend, I use Node.js with Express.js, and for the database, we use MongoDB. On the frontend, I work with both React and Angular, based on project requirements.
+A key part of my role involves integrating third-party insurer APIs. These APIs usually include:
+•	Authentication (JWT or basic auth)
+•	Endpoints for premium calculation, proposal submission, IDV, payment integration, and PDF download
+Before writing production code, I use Postman to test all the APIs — verifying authentication, checking request/response structures, and handling edge cases. This helps me catch issues early and plan the flow better.
+I developed a real-time quote engine that fetches quotes from multiple insurers. Once a quote is selected by the user, the backend handles the full process — submitting proposals, validating KYC, triggering payment, and downloading the final policy document.
+I also implemented complete API logging in MongoDB to track every request and response for auditing and debugging purposes.
+We follow a proper SDLC — every feature is first tested in the UAT environment, and only after business and QA approval, it is deployed to production.
+Before this, I worked at Virtual SCM Pvt Ltd as a MERN Stack Developer. There, I worked on building responsive and scalable web applications using MongoDB, Express.js, React, and Node.js.
+I built features like user dashboards, role-based authentication, data visualizations, and handled RESTful API development. I used Postman regularly for backend testing and integration with frontend components.
+Academically, I’ve completed my MCA (Master of Computer Applications) from Pune.
+
